@@ -17,8 +17,9 @@
     />
   </head>
   <body>
+    <!-- Header Section -->
     <header
-      class="flex items-center justify-between w-full max-w-[1440px] px-4 py-2 absolute top-0 left-1/2 -translate-x-1/2 ml-[10px]"
+      class="flex items-center justify-between w-full max-w-[1440px] px-4 py-2 absolute top-0 left-1/2 -translate-x-1/2 ml-[-40px]"
       id="home"
     >
       <div class="flex items-center">
@@ -32,98 +33,55 @@
       </div>
       <div class="flex items-center space-x-6 mr-[-30px]">
         <div class="flex items-center space-x-2">
+          <!-- Flag & Language Toggle -->
           <img
+            id="lang-flag"
             src="https://flagcdn.com/id.svg"
             alt="ID"
             class="w-6 h-4 rounded-sm border"
           />
-          <span class="text-sm font-medium">ID | IDR</span>
-          <svg
-            class="w-4 h-4 text-gray-500"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <span
+            id="lang-text"
+            class="text-sm font-medium cursor-pointer"
+            onclick="toggleLanguage()"
+            >ID | IDR</span
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </div>
-        <a
-          href="#"
-          class="flex items-center space-x-1 text-sm font-medium hover:text-[var(--bg-primary)]"
-        >
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" fill="#E6F7FF" />
-            <text
-              x="12"
-              y="16"
-              text-anchor="middle"
-              font-size="14"
-              fill="#4CAF50"
-              font-family="Arial"
-              font-weight="bold"
-            >
-              %
-            </text>
-          </svg>
-          <span>Promo</span>
-        </a>
-        <a href="#" class="text-sm font-medium hover:text-[var(--bg-primary)]"
-          >Pesanan</a
-        >
-        <div class="flex gap-2">
-          <button
-            class="flex items-center px-3.5 py-2 border border-[#009CF7] rounded-xl text-sm text-black font-medium hover:bg-[var(--bg-tertiary)] transition"
-            id="login-btn"
-          >
-            <i class="fa-solid fa-user mr-3" style="color: #009cf7"></i>
-            Log In
-          </button>
-          <button
-            class="px-6 py-2 rounded-xl bg-[var(--bg-primary)] text-white font-bold hover:bg-[var(--bg-secondary)] transition"
-            id="register-btn"
-          >
-            Daftar
-          </button>
         </div>
       </div>
     </header>
 
+    <!-- Main Content Section -->
     <p
       class="flex justify-center items-start pt-32 font-bold mb-[-120px] text-sm"
+      data-lang="chronology"
     >
       Kronologi | Transportasi
     </p>
-
     <p
       class="flex justify-center items-start pt-32 mb-[-100px] font-bold text-[30px]"
+      data-lang="historyTitle"
     >
-      Sejarah Moda dan Regulasi Transportasi Umum di Jakarta
+      Pemprov DKI Gratiskan Transportasi Umum pada 24 April 2025
     </p>
 
     <div class="flex justify-center pt-32 mb-[-80px]">
-      <p class="w-[67%] text-lg text-center">
-        Kabar gembira, Pemerintah Provinsi (Pemprov) DKI Jakarta akan
-        menggratiskan layanan transportasi umum bagi seluruh masyarakat pada
-        tanggal 24 April 2025 atau bertepatan dengan peringatan Hari Angkutan
-        Nasional.
+      <p class="w-[70%] text-lg text-center" data-lang="intro">
+        “Pada 24 April nanti, semua penumpang bisa menikmati layanan
+        transportasi umum secara gratis sepanjang hari dalam rangka memperingati
+        Hari Angkutan Nasional,” ujar Chico, sapaan akrabnya, Jumat (18/4).
       </p>
     </div>
 
     <div class="flex justify-center items-start pt-32 mr-[760px]">
       <div>
-        <p>Oleh <b>Aldi Geri</b></p>
-        <p>Selasa, 18 April 2025 12:08:00 WIB</p>
+        <p data-lang="by">Oleh <b>Aldi</b></p>
+        <p data-lang="date">Jumat, 18 April 2025 12:08:00 WIB</p>
       </div>
     </div>
 
     <div class="flex justify-center items-start pt-32 mt-[-110px]">
       <img
-        src="../img//berita2.png"
+        src="../img//berita1.png"
         alt="Berita 1"
         class="w-[1000px] mt-[20px] rounded-2xl"
       />
@@ -131,52 +89,51 @@
 
     <div class="flex justify-center items-center pt-32 w-full mt-[-80px]">
       <div class="w-full max-w-5xl px-4 mx-auto">
-        <p>
-          Staf Khusus Gubernur dan Wakil Gubernur DKI Jakarta Bidang Komunikasi
-          Publik, Cyril Raoul Hakim mengatakan, jenis transportasi yang termasuk
-          dalam program ini meliputi Transjakarta (BRT dan non-BRT), Mikrotrans,
-          MRT Jakarta dan LRT Jakarta. “Pada 24 April nanti, semua penumpang
-          bisa menikmati layanan transportasi umum secara gratis sepanjang hari
-          dalam rangka memperingati Hari Angkutan Nasional,” ujar Chico, sapaan
-          akrabnya, Jumat (18/4).
-
-          <br />
-          <br />
-
+        <p data-lang="articleText">
           Chico menyampaikan, Gubernur DKI Jakarta, Pramono Anung dijadwalkan
           akan meresmikan rute baru Transjabodetabek Blok M-Alam Sutera pada
           tanggal yang sama. Saat ini, rute tersebut masih dalam tahap uji coba.
           Sementara itu, Wakil Gubernur DKI Jakarta, Rano Karno direncanakan
           turut serta dalam uji coba lanjutan yang akan dilaksanakan pada 21
-          April 2024, bertepatan dengan peringatan Hari Kartini. Ditambahkan
-          Chico, uji coba ini merupakan bagian dari persiapan pembukaan empat
-          rute baru yang akan menghubungkan Jakarta dengan Tangerang, Bekasi dan
-          sekitarnya. "Setelah Pak Wagub melakukan uji coba tanggal 21, maka Pak
-          Gubernur akan meresmikan langsung rute baru tersebut pada tanggal 24
-          April yang bertepatan dengan Hari Angkutan Nasional," tandas Chico.
+          April 2024, bertepatan dengan peringatan Hari Kartini.
+
+          <br /><br />
+
+          Ditambahkan Chico, uji coba ini merupakan bagian dari persiapan
+          pembukaan empat rute baru yang akan menghubungkan Jakarta dengan
+          Tangerang, Bekasi dan sekitarnya. "Setelah Pak Wagub melakukan uji
+          coba tanggal 21, maka Pak Gubernur akan meresmikan langsung rute baru
+          tersebut pada tanggal 24 April yang bertepatan dengan Hari Angkutan
+          Nasional," tandas Chico.
         </p>
       </div>
     </div>
 
+    <!-- Scrollable Berita Section -->
     <div class="w-full max-w-[1300px] mx-auto mt-[40px] px-4 mb-[70px]">
-      <h2 class="text-xl font-bold mb-[40px]">Berita Terbaru</h2>
+      <h2 class="text-xl font-bold mb-[40px]" data-lang="latestNewsTitle">
+        Berita Terbaru
+      </h2>
       <div class="relative overflow-x-auto">
         <!-- Scrollable berita 2 baris, geser ke kanan -->
         <div class="w-full overflow-x-auto h-[600px]">
-          <div class="flex gap-8 flex-wrap justify-center">
+          <div class="flex gap-8 min-w-[1200px] flex-wrap justify-center">
             <!-- Kolom 1 -->
             <div class="flex flex-col gap-6 w-[380px]">
               <!-- Artikel 1 -->
               <a
                 href="../detailBerita/detailBerita1.html"
-                class="w-[380px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
+                class="bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
               >
                 <img
                   src="../img/berita1.png"
                   alt="Berita 1"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article1Title"
+                >
                   Sejarah Mode dan Regulasi Transportasi Umum di Jakarta -
                   Kompaspedia
                 </div>
@@ -184,15 +141,18 @@
               <!-- Artikel 4 -->
               <a
                 href="../detailBerita/detailBerita4.html"
-                class="w-[380px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
+                class="bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
               >
                 <img
                   src="../img/berita4.png"
                   alt="Berita 4"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
-                  Menjajal Kereta Api Whoosh dari Jakarta ke Bandung. - Terah
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article4Title"
+                >
+                  Menjajal Kereta Api Whoosh dari Jakarta ke Bandung - Terah
                   Malioboro News
                 </div>
               </a>
@@ -202,28 +162,34 @@
               <!-- Artikel 2 -->
               <a
                 href="#home"
-                class="w-[380px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
+                class="bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
               >
                 <img
                   src="../img/berita2.png"
                   alt="Berita 2"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article2Title"
+                >
                   Pemprov DKI Gratiskan Transportasi Umum pada 24 April 2025
                 </div>
               </a>
               <!-- Artikel 5 -->
               <a
                 href="../detailBerita/detailBerita5.html"
-                class="w-[380px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
+                class="bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
               >
                 <img
                   src="../img/berita5.png"
                   alt="Berita 5"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article5Title"
+                >
                   718.000 Penumpang Naik Kereta Cepat Whoosh, KCIC: Kenyamanan,
                   Keamanan dan Efisiensi Paling Dicari
                 </div>
@@ -234,14 +200,17 @@
               <!-- Artikel 3 -->
               <a
                 href="../detailBerita/detailBerita3.html"
-                class="w-[380px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
+                class="bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block flex-shrink-0"
               >
                 <img
                   src="../img/berita3.png"
                   alt="Berita 3"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article3Title"
+                >
                   Transjakarta Buka Peluang Kerja Sama dengan Agen Bus Listrik
                 </div>
               </a>
@@ -251,6 +220,7 @@
       </div>
     </div>
 
+    <!-- Footer Section -->
     <div class="mt-[50px] bg-[#009cf7] h-[280px]">
       <div class="flex justify-between">
         <div class="w-[180px] ml-[70px] mt-[10px]">
@@ -260,47 +230,102 @@
             alt=""
           />
           <div class="mt-[65px]">
-            <p class="text-[12px] text-white mb-[2px]">© 2025 NIKE</p>
-            <p class="text-[12px] text-white mb-[2px]">All rights reserved</p>
+            <p
+              class="text-[12px] text-white mb-[2px]"
+              data-lang="© 2025 AngkutIn"
+            >
+              © 2025 NIKE
+            </p>
+            <p
+              class="text-[12px] text-white mb-[2px]"
+              data-lang="All rights reserved"
+            >
+              All rights reserved
+            </p>
           </div>
         </div>
+
         <div class="text-footer">
-          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+          <p
+            class="mt-[70px] text-[20px] font-bold text-white mb-[30px]"
+            data-lang="resourcesTitle"
+          >
             Resources
           </p>
-
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="findStore"
             >Find A Store</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="becomeMember"
             >Become A Member</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="educationDiscounts"
             >Education Discounts</a
           >
         </div>
+
         <div class="text-footer">
-          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+          <p
+            class="mt-[70px] text-[20px] font-bold text-white mb-[30px]"
+            data-lang="helpTitle"
+          >
             Help
           </p>
-
-          <a href="#" class="text-[14px] text-white mb-[5px] block">Get Help</a>
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="getHelp"
+            >Get Help</a
+          >
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="orderStatus"
             >Order Status</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block">Returns</a>
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="returns"
+            >Returns</a
+          >
         </div>
+
         <div class="text-footer">
-          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+          <p
+            class="mt-[70px] text-[20px] font-bold text-white mb-[30px]"
+            data-lang="companyTitle"
+          >
             Company
           </p>
-
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="aboutNike"
             >About Nike</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block">News</a>
-          <a href="#" class="text-[14px] text-white mb-[5px] block">Careers</a>
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="news"
+            >News</a
+          >
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="careers"
+            >Careers</a
+          >
         </div>
+
         <div class="flex flex-col items-end mr-[70px] mt-[70px]">
           <div class="flex space-x-8 mb-4">
             <a href="#" aria-label="Twitter">
@@ -324,13 +349,146 @@
               ></i>
             </a>
           </div>
-          <p class="text-[12px] text-white mt-[110px]">
+          <p
+            class="text-[12px] text-white mt-[110px]"
+            data-lang="privacyPolicy"
+          >
             Privacy & Cookie Policy
           </p>
         </div>
       </div>
     </div>
 
-    <script src="./detailBerita.js"></script>
+    <script>
+      const languageData = {
+        en: {
+          chronology: "Chronology | Transportation",
+          historyTitle:
+            "DKI Provincial Government to Make Public Transportation Free on April 24, 2025",
+          intro:
+            "“On April 24, all passengers can enjoy free public transportation services all day long to commemorate National Transportation Day,“ said Chico, his nickname, Friday (18/4).",
+          by: "By Aldi Geri",
+          date: "Friday, April 18, 2025 12:08:00 WIB",
+          articleText:
+            "Chico said that the Governor of DKI Jakarta, Pramono Anung is scheduled to inaugurate the new Transjabodetabek Blok M-Alam Sutera route on the same date. Currently, the route is still in the trial stage. Meanwhile, the Deputy Governor of DKI Jakarta, Rano Karno is planned to participate in the further trial which will be held on April 21, 2024, coinciding with the commemoration of Kartini Day. </br> </br> Chico added that this trial is part of the preparation for the opening of four new routes that will connect Jakarta with Tangerang, Bekasi and surrounding areas. “After the Deputy Governor conducts the trial on the 21st, the Governor will inaugurate the new route directly on April 24 which coincides with National Transportation Day,“ said Chico.",
+          latestNewsTitle: "Latest News",
+          article1Title:
+            "History of Public Transportation Modes and Regulations in Jakarta - Kompaspedia",
+          article4Title:
+            "Testing the Whoosh Train from Jakarta to Bandung - Terah Malioboro News",
+          article2Title:
+            "DKI Provincial Government to Make Public Transportation Free on April 24, 2025",
+          article3Title:
+            "Transjakarta Opens Opportunities for Cooperation with Electric Bus Agents",
+          article5Title:
+            "718,000 Passengers Ride the Whoosh High-Speed Train, KCIC: Comfort, Safety, and Efficiency Are Most Sought After",
+          resourcesTitle: "Resources",
+          findStore: "Find A Store",
+          becomeMember: "Become A Member",
+          educationDiscounts: "Education Discounts",
+          helpTitle: "Help",
+          getHelp: "Get Help",
+          orderStatus: "Order Status",
+          returns: "Returns",
+          companyTitle: "Company",
+          aboutNike: "About AngkutIn",
+          news: "News",
+          careers: "Careers",
+          privacyPolicy: "Privacy & Cookie Policy",
+        },
+        id: {
+          chronology: "Kronologi | Transportasi",
+          historyTitle:
+            "Pemprov DKI Gratiskan Transportasi Umum pada 24 April 2025",
+          intro:
+            "“Pada 24 April nanti, semua penumpang bisa menikmati layanan transportasi umum secara gratis sepanjang hari dalam rangka memperingati Hari Angkutan Nasional,” ujar Chico, sapaan akrabnya, Jumat (18/4).",
+          by: "Oleh Aldi Geri",
+          date: "Jumat, 18 April 2025 12:08:00 WIB",
+          articleText:
+            "Chico menyampaikan, Gubernur DKI Jakarta, Pramono Anung dijadwalkan akan meresmikan rute baru Transjabodetabek Blok M-Alam Sutera pada tanggal yang sama. Saat ini, rute tersebut masih dalam tahap uji coba. Sementara itu, Wakil Gubernur DKI Jakarta, Rano Karno direncanakan turut serta dalam uji coba lanjutan yang akan dilaksanakan pada 21 April 2024, bertepatan dengan peringatan Hari Kartini. </br> </br> Ditambahkan Chico, uji coba ini merupakan bagian dari persiapan pembukaan empat rute baru yang akan menghubungkan Jakarta dengan Tangerang, Bekasi dan sekitarnya. “Setelah Pak Wagub melakukan uji coba tanggal 21, maka Pak Gubernur akan meresmikan langsung rute baru tersebut pada tanggal 24 April yang bertepatan dengan Hari Angkutan Nasional,“ tandas Chico.",
+          latestNewsTitle: "Berita Terbaru",
+          article1Title:
+            "Sejarah Mode dan Regulasi Transportasi Umum di Jakarta - Kompaspedia",
+          article4Title:
+            "Menjajal Kereta Api Whoosh dari Jakarta ke Bandung - Terah Malioboro News",
+          article2Title:
+            "Pemprov DKI Gratiskan Transportasi Umum pada 24 April 2025",
+          article3Title:
+            "Transjakarta Buka Peluang Kerja Sama dengan Agen Bus Listrik",
+          article5Title:
+            "718.000 Penumpang Naik Kereta Cepat Whoosh, KCIC: Kenyamanan, Keamanan dan Efisiensi Paling Dicari",
+          resourcesTitle: "Sumber Daya",
+          findStore: "Temukan Toko",
+          becomeMember: "Jadi Anggota",
+          educationDiscounts: "Diskon Pendidikan",
+          helpTitle: "Bantuan",
+          getHelp: "Dapatkan Bantuan",
+          orderStatus: "Status Pesanan",
+          returns: "Pengembalian",
+          companyTitle: "Perusahaan",
+          aboutNike: "Tentang AngkutIn",
+          news: "Berita",
+          careers: "Karir",
+          privacyPolicy: "Kebijakan Privasi & Cookie",
+        },
+      };
+
+      // Fungsi untuk mengubah bahasa
+      function changeLanguage(language) {
+        const elements = document.querySelectorAll("[data-lang]");
+
+        elements.forEach((element) => {
+          const key = element.getAttribute("data-lang");
+
+          // Menentukan variabel 'text' berdasarkan bahasa yang dipilih
+          let text = languageData[language][key] || key;
+
+          // Cek jika key adalah 'articleText', tambahkan <b> untuk "TEMPO.CO, Jakarta"
+          if (key === "articleText") {
+            text = text.replace(
+              "Jakarta, IDN Times",
+              "<b>Jakarta, IDN Times</b>"
+            ); // Membuat "TEMPO.CO, Jakarta" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          }
+          // Cek jika key adalah 'by', tambahkan <b> untuk "Sulistyawan"
+          else if (key === "by") {
+            text = text.replace("Aldi Geri", "<b>Aldi Geri</b>"); // Membuat "Sulistyawan" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          } else {
+            element.innerText = text; // Untuk selain key yang disebutkan, gunakan innerText
+          }
+        });
+
+        // Mengubah flag dan teks bahasa di header
+        const flag =
+          language === "id"
+            ? "https://flagcdn.com/id.svg"
+            : "https://flagcdn.com/gb.svg"; // Mengubah bendera sesuai dengan bahasa yang dipilih
+
+        const langText = language === "id" ? "ID | IDR" : "EN | IDR"; // Menggunakan "IDR" untuk kedua bahasa
+        document.getElementById("lang-flag").src = flag;
+        document.getElementById("lang-text").innerText = langText; // Mengubah teks bahasa di header
+      }
+
+      // Fungsi untuk toggle bahasa antara ID dan EN
+      function toggleLanguage() {
+        const currentLangText = document.getElementById("lang-text").innerText; // Mendapatkan teks saat ini
+        let newLang;
+
+        // Cek teks saat ini, apakah "ID | IDR" atau "EN | IDR"
+        if (currentLangText === "ID | IDR") {
+          newLang = "en"; // Jika "ID | IDR", ganti ke bahasa Inggris (EN)
+        } else {
+          newLang = "id"; // Jika "EN | IDR", ganti ke bahasa Indonesia (ID)
+        }
+
+        // Panggil fungsi untuk mengubah bahasa
+        changeLanguage(newLang);
+      }
+
+      // Set default language (misalnya Bahasa Indonesia)
+      changeLanguage("id");
+    </script>
   </body>
 </html>

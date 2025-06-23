@@ -17,8 +17,9 @@
     />
   </head>
   <body>
+    <!-- Header Section -->
     <header
-      class="flex items-center justify-between w-full max-w-[1440px] px-4 py-2 absolute top-0 left-1/2 -translate-x-1/2"
+      class="flex items-center justify-between w-full max-w-[1440px] px-4 py-2 absolute top-0 left-1/2 -translate-x-1/2 ml-[-40px]"
       id="home"
     >
       <div class="flex items-center">
@@ -32,63 +33,39 @@
       </div>
       <div class="flex items-center space-x-6 mr-[-30px]">
         <div class="flex items-center space-x-2">
+          <!-- Flag & Language Toggle -->
           <img
+            id="lang-flag"
             src="https://flagcdn.com/id.svg"
             alt="ID"
             class="w-6 h-4 rounded-sm border"
           />
-          <span class="text-sm font-medium">ID | IDR</span>
-          <svg
-            class="w-4 h-4 text-gray-500"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <span
+            id="lang-text"
+            class="text-sm font-medium cursor-pointer"
+            onclick="toggleLanguage()"
+            >ID | IDR</span
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
         </div>
-        <a
-          href="#"
-          class="flex items-center space-x-1 text-sm font-medium hover:text-[var(--bg-primary)]"
-        >
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" fill="#E6F7FF" />
-            <text
-              x="12"
-              y="16"
-              text-anchor="middle"
-              font-size="14"
-              fill="#4CAF50"
-              font-family="Arial"
-              font-weight="bold"
-            >
-              %
-            </text>
-          </svg>
-          <span>Promo</span>
-        </a>
       </div>
     </header>
 
+    <!-- Main Content Section -->
     <p
       class="flex justify-center items-start pt-32 font-bold mb-[-120px] text-sm"
+      data-lang="chronology"
     >
       Kronologi | Transportasi
     </p>
-
     <p
       class="flex justify-center items-start pt-32 mb-[-100px] font-bold text-[30px]"
+      data-lang="historyTitle"
     >
       Sejarah Moda dan Regulasi Transportasi Umum di Jakarta
     </p>
 
     <div class="flex justify-center pt-32 mb-[-80px]">
-      <p class="w-[70%] text-lg text-center">
+      <p class="w-[70%] text-lg text-center" data-lang="intro">
         Sebelum adanya Light Rail Transit (LRT) maupun Mass Rapid Transit (MRT),
         Jakarta telah mengalami perjalanan panjang mengoperasikan berbagai jenis
         kendaraan umum sebagai sarana transportasi bagi warga ibu kota.
@@ -97,8 +74,8 @@
 
     <div class="flex justify-center items-start pt-32 mr-[760px]">
       <div>
-        <p>Oleh <b>Khusniani</b></p>
-        <p>Selasa, 17 Mei 2022 05:00:09 WIB</p>
+        <p data-lang="by">Oleh <b>Khusniani</b></p>
+        <p data-lang="date">Selasa, 17 Mei 2022 05:00:09 WIB</p>
       </div>
     </div>
 
@@ -112,15 +89,14 @@
 
     <div class="flex justify-center items-center pt-32 w-full mt-[-80px]">
       <div class="w-full max-w-5xl px-4 mx-auto">
-        <p>
+        <p data-lang="articleText">
           Bus Transjakarta melintas di Jalan Hasyim Ashari, Jakarta Pusat, Rabu
           (5/2/2020). Jumlah pengguna bus Transjakarta telah menembus 1 juta
           penumpang per hari. Layanan transportasi yang terintegrasi menjadi
           salah satu faktor yang meningkatkan animo warga untuk menggunakan
           transportasi umum.
 
-          <br />
-          <br />
+          <br /><br />
 
           Transportasi umum dapat dikatakan sudah melekat bagi warga ibu kota,
           bahkan banyak yang sudah bergantung dengan keberadaan angkutan umum
@@ -135,9 +111,11 @@
       </div>
     </div>
 
-    <!-- Artikel/berita dengan gambar kecil scroll horizontal, dibagi 2 baris -->
+    <!-- Scrollable Berita Section -->
     <div class="w-full max-w-[1300px] mx-auto mt-[40px] px-4 mb-[70px]">
-      <h2 class="text-xl font-bold mb-[40px]">Berita Terbaru</h2>
+      <h2 class="text-xl font-bold mb-[40px]" data-lang="latestNewsTitle">
+        Berita Terbaru
+      </h2>
       <div class="relative overflow-x-auto">
         <!-- Scrollable berita 2 baris, geser ke kanan -->
         <div class="w-full overflow-x-auto h-[600px]">
@@ -154,7 +132,10 @@
                   alt="Berita 1"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article1Title"
+                >
                   Sejarah Mode dan Regulasi Transportasi Umum di Jakarta -
                   Kompaspedia
                 </div>
@@ -169,8 +150,11 @@
                   alt="Berita 4"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
-                  Menjajal Kereta Api Whoosh dari Jakarta ke Bandung. - Terah
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article4Title"
+                >
+                  Menjajal Kereta Api Whoosh dari Jakarta ke Bandung - Terah
                   Malioboro News
                 </div>
               </a>
@@ -187,7 +171,10 @@
                   alt="Berita 2"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article2Title"
+                >
                   Pemprov DKI Gratiskan Transportasi Umum pada 24 April 2025
                 </div>
               </a>
@@ -201,7 +188,10 @@
                   alt="Berita 5"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article5Title"
+                >
                   718.000 Penumpang Naik Kereta Cepat Whoosh, KCIC: Kenyamanan,
                   Keamanan dan Efisiensi Paling Dicari
                 </div>
@@ -219,7 +209,10 @@
                   alt="Berita 3"
                   class="object-cover rounded-t-2xl mx-auto w-[360px] h-[210px]"
                 />
-                <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+                <div
+                  class="mt-4 text-start text-sm font-bold px-4 pb-4"
+                  data-lang="article3Title"
+                >
                   Transjakarta Buka Peluang Kerja Sama dengan Agen Bus Listrik
                 </div>
               </a>
@@ -229,6 +222,7 @@
       </div>
     </div>
 
+    <!-- Footer Section -->
     <div class="mt-[50px] bg-[#009cf7] h-[280px]">
       <div class="flex justify-between">
         <div class="w-[180px] ml-[70px] mt-[10px]">
@@ -238,47 +232,102 @@
             alt=""
           />
           <div class="mt-[65px]">
-            <p class="text-[12px] text-white mb-[2px]">© 2025 NIKE</p>
-            <p class="text-[12px] text-white mb-[2px]">All rights reserved</p>
+            <p
+              class="text-[12px] text-white mb-[2px]"
+              data-lang="© 2025 AngkutIn"
+            >
+              © 2025 NIKE
+            </p>
+            <p
+              class="text-[12px] text-white mb-[2px]"
+              data-lang="All rights reserved"
+            >
+              All rights reserved
+            </p>
           </div>
         </div>
+
         <div class="text-footer">
-          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+          <p
+            class="mt-[70px] text-[20px] font-bold text-white mb-[30px]"
+            data-lang="resourcesTitle"
+          >
             Resources
           </p>
-
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="findStore"
             >Find A Store</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="becomeMember"
             >Become A Member</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="educationDiscounts"
             >Education Discounts</a
           >
         </div>
+
         <div class="text-footer">
-          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+          <p
+            class="mt-[70px] text-[20px] font-bold text-white mb-[30px]"
+            data-lang="helpTitle"
+          >
             Help
           </p>
-
-          <a href="#" class="text-[14px] text-white mb-[5px] block">Get Help</a>
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="getHelp"
+            >Get Help</a
+          >
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="orderStatus"
             >Order Status</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block">Returns</a>
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="returns"
+            >Returns</a
+          >
         </div>
+
         <div class="text-footer">
-          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+          <p
+            class="mt-[70px] text-[20px] font-bold text-white mb-[30px]"
+            data-lang="companyTitle"
+          >
             Company
           </p>
-
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="aboutNike"
             >About Nike</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block">News</a>
-          <a href="#" class="text-[14px] text-white mb-[5px] block">Careers</a>
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="news"
+            >News</a
+          >
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="careers"
+            >Careers</a
+          >
         </div>
+
         <div class="flex flex-col items-end mr-[70px] mt-[70px]">
           <div class="flex space-x-8 mb-4">
             <a href="#" aria-label="Twitter">
@@ -302,13 +351,146 @@
               ></i>
             </a>
           </div>
-          <p class="text-[12px] text-white mt-[110px]">
+          <p
+            class="text-[12px] text-white mt-[110px]"
+            data-lang="privacyPolicy"
+          >
             Privacy & Cookie Policy
           </p>
         </div>
       </div>
     </div>
 
-    <script src="./detailBerita.js"></script>
+    <script>
+      const languageData = {
+        en: {
+          chronology: "Chronology | Transportation",
+          historyTitle:
+            "History of Public Transportation Modes and Regulations in Jakarta",
+          intro:
+            "Before the introduction of Light Rail Transit (LRT) and Mass Rapid Transit (MRT), Jakarta had undergone a long journey of operating various types of public vehicles as transportation for the city’s residents.",
+          by: "By Khusniani",
+          date: "Tuesday, May 17, 2022 05:00:09 WIB",
+          articleText:
+            "Public transportation can be said to be inherent to the residents of the capital city, even many have become dependent on the existence of public transportation for their mobility. However, public transportation in Jakarta has undergone massive evolution to be able to reach the point it is today. Before there were modern public transportation modes such as MRT or LRT, the DKI Jakarta Provincial Government repeatedly thought about the right public transportation for its citizens. It is not uncommon for public transportation projects in Jakarta to fail, such as the monorail project which was stalled and did not meet the expected expectations. </br></br> Regulations or policies of the DKI Provincial Government have been initiated to make Jakarta a city that is friendly to public transportation. The following is the development of public transportation and modes of transportation that have operated in Jakarta.",
+          latestNewsTitle: "Latest News",
+          article1Title:
+            "History of Public Transportation Modes and Regulations in Jakarta - Kompaspedia",
+          article4Title:
+            "Testing the Whoosh Train from Jakarta to Bandung - Terah Malioboro News",
+          article2Title:
+            "DKI Provincial Government to Make Public Transportation Free on April 24, 2025",
+          article3Title:
+            "Transjakarta Opens Opportunities for Cooperation with Electric Bus Agents",
+          article5Title:
+            "718,000 Passengers Ride the Whoosh High-Speed Train, KCIC: Comfort, Safety, and Efficiency Are Most Sought After",
+          resourcesTitle: "Resources",
+          findStore: "Find A Store",
+          becomeMember: "Become A Member",
+          educationDiscounts: "Education Discounts",
+          helpTitle: "Help",
+          getHelp: "Get Help",
+          orderStatus: "Order Status",
+          returns: "Returns",
+          companyTitle: "Company",
+          aboutNike: "About AngkutIn",
+          news: "News",
+          careers: "Careers",
+          privacyPolicy: "Privacy & Cookie Policy",
+        },
+        id: {
+          chronology: "Kronologi | Transportasi",
+          historyTitle:
+            "Sejarah Moda dan Regulasi Transportasi Umum di Jakarta",
+          intro:
+            "Sebelum adanya Light Rail Transit (LRT) maupun Mass Rapid Transit (MRT), Jakarta telah mengalami perjalanan panjang mengoperasikan berbagai jenis kendaraan umum sebagai sarana transportasi bagi warga ibu kota.",
+          by: "Oleh Khusniani",
+          date: "Selasa, 17 Mei 2022 05:00:09 WIB",
+          articleText:
+            "Transportasi umum dapat dikatakan sudah melekat bagi warga ibu kota, bahkan banyak yang sudah bergantung dengan keberadaan angkutan umum untuk mobilitas mereka. Kendati demikian, transportasi umum di Jakarta telah mengalami evolusi yang masif untuk bisa berada di titik sekarang ini. Sebelum ada moda transportasi umum modern seperti MRT ataupun LRT, Pemprov DKI Jakarta berulang kali memikirkan angkutan-angkutan umum yang tepat bagi warganya. Tidak jarang juga proyek-proyek angkutan umum di Jakarta tidak berhasil, seperti proyek monorel yang mangkrak dan tidak sesuai ekspektasi yang diharapkan. </br></br> Regulasi ataupun kebijakan Pemprov DKI telah digagas guna menjadikan Jakarta sebagai kota yang ramah angkutan umum. Berikut perkembangan angkutan umum dan moda transportasi yang pernah beroperasi di Jakarta.",
+          latestNewsTitle: "Berita Terbaru",
+          article1Title:
+            "Sejarah Mode dan Regulasi Transportasi Umum di Jakarta - Kompaspedia",
+          article4Title:
+            "Menjajal Kereta Api Whoosh dari Jakarta ke Bandung - Terah Malioboro News",
+          article2Title:
+            "Pemprov DKI Gratiskan Transportasi Umum pada 24 April 2025",
+          article3Title:
+            "Transjakarta Buka Peluang Kerja Sama dengan Agen Bus Listrik",
+          article5Title:
+            "718.000 Penumpang Naik Kereta Cepat Whoosh, KCIC: Kenyamanan, Keamanan dan Efisiensi Paling Dicari",
+          resourcesTitle: "Sumber Daya",
+          findStore: "Temukan Toko",
+          becomeMember: "Jadi Anggota",
+          educationDiscounts: "Diskon Pendidikan",
+          helpTitle: "Bantuan",
+          getHelp: "Dapatkan Bantuan",
+          orderStatus: "Status Pesanan",
+          returns: "Pengembalian",
+          companyTitle: "Perusahaan",
+          aboutNike: "Tentang AngkutIn",
+          news: "Berita",
+          careers: "Karir",
+          privacyPolicy: "Kebijakan Privasi & Cookie",
+        },
+      };
+
+      // Fungsi untuk mengubah bahasa
+      function changeLanguage(language) {
+        const elements = document.querySelectorAll("[data-lang]");
+
+        elements.forEach((element) => {
+          const key = element.getAttribute("data-lang");
+
+          // Menentukan variabel 'text' berdasarkan bahasa yang dipilih
+          let text = languageData[language][key] || key;
+
+          // Cek jika key adalah 'articleText', tambahkan <b> untuk "TEMPO.CO, Jakarta"
+          if (key === "articleText") {
+            text = text.replace(
+              "Jakarta, IDN Times",
+              "<b>Jakarta, IDN Times</b>"
+            ); // Membuat "TEMPO.CO, Jakarta" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          }
+          // Cek jika key adalah 'by', tambahkan <b> untuk "Sulistyawan"
+          else if (key === "by") {
+            text = text.replace("Khusniani", "<b>Khusniani</b>"); // Membuat "Sulistyawan" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          } else {
+            element.innerText = text; // Untuk selain key yang disebutkan, gunakan innerText
+          }
+        });
+
+        // Mengubah flag dan teks bahasa di header
+        const flag =
+          language === "id"
+            ? "https://flagcdn.com/id.svg"
+            : "https://flagcdn.com/gb.svg"; // Mengubah bendera sesuai dengan bahasa yang dipilih
+
+        const langText = language === "id" ? "ID | IDR" : "EN | IDR"; // Menggunakan "IDR" untuk kedua bahasa
+        document.getElementById("lang-flag").src = flag;
+        document.getElementById("lang-text").innerText = langText; // Mengubah teks bahasa di header
+      }
+
+      // Fungsi untuk toggle bahasa antara ID dan EN
+      function toggleLanguage() {
+        const currentLangText = document.getElementById("lang-text").innerText; // Mendapatkan teks saat ini
+        let newLang;
+
+        // Cek teks saat ini, apakah "ID | IDR" atau "EN | IDR"
+        if (currentLangText === "ID | IDR") {
+          newLang = "en"; // Jika "ID | IDR", ganti ke bahasa Inggris (EN)
+        } else {
+          newLang = "id"; // Jika "EN | IDR", ganti ke bahasa Indonesia (ID)
+        }
+
+        // Panggil fungsi untuk mengubah bahasa
+        changeLanguage(newLang);
+      }
+
+      // Set default language (misalnya Bahasa Indonesia)
+      changeLanguage("id");
+    </script>
   </body>
 </html>

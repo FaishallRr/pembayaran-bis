@@ -1,0 +1,32 @@
+*,
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg-primary: #009cf7;
+  --bg-secondary: #007acc;
+  --bg-tertiary: #e6f7ff;
+  --bg-quaternary: #ffffff;
+
+  --text-primary: #000000;
+  --text-secondary: #ffff;
+  --text-tertiary: #009cf7;
+
+  --color-primary: #009cf7;
+  --color-secondary: #007acc;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s;
+}

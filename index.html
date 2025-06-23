@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="global.css" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="relative w-full mt-[50px]">
+      <div class="relative">
+        <img
+          src="img/busTravel.png"
+          alt="busTravel"
+          class="mt-[-50px] w-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+      </div>
+
+      <header
+        class="flex items-center justify-between w-full max-w-[1440px] px-4 py-2 absolute top-0 left-1/2 -translate-x-1/2 ml-[-50px]"
+      >
+        <div class="flex items-center">
+          <a href="/index.html">
+            <img
+              src="../img/logoAngkutan.png"
+              alt="logo"
+              class="w-[120px] ml-[60px]"
+            />
+          </a>
+        </div>
+        <div class="flex items-center space-x-6 mr-[-30px]">
+          <div class="flex items-center space-x-2">
+            <img
+              src="https://flagcdn.com/id.svg"
+              alt="ID"
+              class="w-6 h-4 rounded-sm border"
+            />
+            <span class="text-sm font-medium">ID | IDR</span>
+            <svg
+              class="w-4 h-4 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+          <a
+            href="#"
+            class="flex items-center space-x-1 text-sm font-medium hover:text-[var(--bg-primary)]"
+          >
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#E6F7FF" />
+              <text
+                x="12"
+                y="16"
+                text-anchor="middle"
+                font-size="14"
+                fill="#4CAF50"
+                font-family="Arial"
+                font-weight="bold"
+              >
+                %
+              </text>
+            </svg>
+            <span>Promo</span>
+          </a>
+          <a href="#" class="text-sm font-medium hover:text-[var(--bg-primary)]"
+            >Pesanan</a
+          >
+          <!-- Dropdown User/Login/Register/Logout -->
+          <div class="relative" id="user-dropdown-container">
+            <button
+              id="user-dropdown-btn"
+              class="flex items-center px-3.5 py-2 border border-[#009CF7] rounded-xl text-sm text-black font-medium hover:bg-[var(--bg-tertiary)] transition focus:outline-none"
+              type="button"
+            >
+              <i class="fa-solid fa-user mr-3" style="color: #009cf7"></i>
+              <span id="user-dropdown-text">Log In</span>
+              <svg
+                class="ml-2 w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              id="user-dropdown-menu"
+              class="hidden absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-lg z-50 py-2 border border-gray-100"
+            >
+              <button
+                id="dropdown-login-btn"
+                class="w-full text-left px-4 py-2 text-sm hover:bg-[var(--bg-quaternary)] transition flex items-center"
+                onclick="window.location.href='./login/login.html'"
+                type="button"
+              >
+                <i class="fa-solid fa-right-to-bracket mr-2"></i> Log In
+              </button>
+              <button
+                id="dropdown-register-btn"
+                class="w-full text-left px-4 py-2 text-sm hover:bg-[var(--bg-quaternary)] transition flex items-center"
+                onclick="window.location.href='./register/register.html'"
+                type="button"
+              >
+                <i class="fa-solid fa-user-plus mr-2"></i> Daftar
+              </button>
+              <button
+                id="dropdown-logout-btn"
+                class="w-full text-left px-4 py-2 text-sm hover:bg-red-100 text-red-600 transition flex items-center hidden"
+                type="button"
+              >
+                <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <div
+      class="absolute left-1/2 -translate-x-1/2 w-full max-w-[1440px] px-4 ml-[-275px] flex justify-center"
+      style="top: 140px"
+    >
+      <div class="flex items-center justify-between mt-10 space-y-4">
+        <div>
+          <div style="position: relative" class="ml-[140px]">
+            <button
+              class="px-6 py-1 rounded-2xl bg-[var(--bg-primary)] text-white font-bold flex items-center gap-2"
+            >
+              <i class="fa-solid fa-bus"></i>
+              Tiket Bus & Shuttle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form di atas gambar -->
+    <div
+      class="absolute left-1/2 -translate-x-1/2 w-full max-w-[1440px] px-4"
+      style="top: 250px; z-index: 10"
+    >
+      <div class="flex flex-row gap-14 justify-center w-full">
+        <!-- Kolom Dari & Ke -->
+        <div class="flex flex-col gap-8">
+          <div class="flex flex-col gap-2">
+            <div class="font-bold text-lg w-[60px]">Dari</div>
+            <div class="relative w-[350px]">
+              <select
+                id="terminal-dari"
+                class="w-full px-12 py-3 rounded-2xl bg-[var(--bg-quaternary)] border border-[#C6E9FEFF] text-gray-500 font-semibold focus:outline-none hover:border-[#007acc] hover:bg-[#e6f7ff] hover:shadow-lg focus:border-[#007acc] focus:bg-[#e6f7ff] focus:shadow-lg transition appearance-none"
+                onchange="cekTerminalSama()"
+              >
+                <option value="">Pilih Terminal Keberangkatan</option>
+                <option value="terminal-pulo-gebang">
+                  Terminal Pulo Gebang
+                </option>
+                <option value="terminal-kampung-rambutan">
+                  Terminal Kampung Rambutan
+                </option>
+                <option value="terminal-lebak-bulus">
+                  Terminal Lebak Bulus
+                </option>
+                <option value="terminal-kalideres">Terminal Kalideres</option>
+                <option value="terminal-giwangan">Terminal Giwangan</option>
+                <option value="terminal-bungurasih">Terminal Bungurasih</option>
+                <option value="terminal-arjosari">Terminal Arjosari</option>
+                <option value="terminal-tirtonadi">Terminal Tirtonadi</option>
+                <!-- Tambahkan terminal lain sesuai kebutuhan -->
+              </select>
+              <div
+                class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              >
+                <i class="fa-solid fa-bus" style="color: #009cf7"></i>
+              </div>
+              <div
+                class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              >
+                <i class="fa-solid fa-chevron-down text-gray-400"></i>
+              </div>
+              <!-- Notifikasi custom -->
+              <div
+                id="notif-terminal"
+                class="hidden absolute left-0 right-0 top-[110%] bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-lg text-sm shadow-lg z-20 flex items-center gap-2"
+              >
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span>Terminal keberangkatan dan tujuan tidak boleh sama!</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <div class="font-bold text-lg w-[60px]">Ke</div>
+            <div class="relative w-[350px]">
+              <select
+                aria-label="Ke"
+                id="terminal-ke"
+                class="w-full px-12 py-3 rounded-2xl bg-[var(--bg-quaternary)] border border-[#C6E9FEFF] text-gray-500 font-semibold focus:outline-none hover:border-[#007acc] hover:bg-[#e6f7ff] hover:shadow-lg focus:border-[#007acc] focus:bg-[#e6f7ff] focus:shadow-lg transition appearance-none"
+                onchange="cekTerminalSama()"
+              >
+                <option value="">Pilih Terminal Tujuan</option>
+                <option value="terminal-pulo-gebang">
+                  Terminal Pulo Gebang
+                </option>
+                <option value="terminal-kampung-rambutan">
+                  Terminal Kampung Rambutan
+                </option>
+                <option value="terminal-lebak-bulus">
+                  Terminal Lebak Bulus
+                </option>
+                <option value="terminal-kalideres">Terminal Kalideres</option>
+                <option value="terminal-giwangan">Terminal Giwangan</option>
+                <option value="terminal-bungurasih">Terminal Bungurasih</option>
+                <option value="terminal-arjosari">Terminal Arjosari</option>
+                <option value="terminal-tirtonadi">Terminal Tirtonadi</option>
+                <!-- Tambahkan terminal lain sesuai kebutuhan -->
+              </select>
+              <div
+                class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              >
+                <i class="fa-solid fa-bus" style="color: #009cf7"></i>
+              </div>
+              <div
+                class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              >
+                <i class="fa-solid fa-chevron-down text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Kolom Disampingnya -->
+        <div class="flex flex-col gap-8">
+          <div class="flex flex-col gap-2">
+            <label for="tanggal-berangkat" class="font-bold text-lg w-[60px]"
+              >Tanggal</label
+            >
+            <div class="relative w-[350px]">
+              <input
+                type="date"
+                id="tanggal-berangkat"
+                name="tanggal-berangkat"
+                class="w-full px-12 py-3 rounded-2xl bg-[var(--bg-quaternary)] border border-[#C6E9FEFF] text-gray-500 font-semibold focus:outline-none hover:border-[#007acc] hover:bg-[#e6f7ff] hover:shadow-lg focus:border-[#007acc] focus:bg-[#e6f7ff] focus:shadow-lg transition appearance-none"
+              />
+              <div
+                class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              >
+                <i class="fa-solid fa-calendar-days" style="color: #009cf7"></i>
+              </div>
+              <div
+                class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              >
+                <i class="fa-solid fa-chevron-down text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-bold text-lg w-[60px]" for="penumpang">
+              Penumpang
+            </label>
+            <div class="relative w-[350px]">
+              <select
+                id="penumpang"
+                name="penumpang"
+                class="w-full px-12 py-3 rounded-2xl bg-[var(--bg-quaternary)] border border-[#C6E9FEFF] text-gray-500 font-semibold focus:outline-none hover:border-[#007acc] hover:bg-[#e6f7ff] hover:shadow-lg focus:border-[#007acc] focus:bg-[#e6f7ff] focus:shadow-lg transition appearance-none"
+              >
+                <option value="1">1 Dewasa</option>
+                <option value="2">2 Dewasa</option>
+                <option value="3">3 Dewasa</option>
+              </select>
+              <div
+                class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              >
+                <i class="fa-solid fa-user-group" style="color: #009cf7"></i>
+              </div>
+              <div
+                class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              >
+                <i class="fa-solid fa-chevron-down text-gray-400"></i>
+              </div>
+            </div>
+            <span class="text-xs text-gray-600 ml-1"
+              >Maksimal 3 penumpang dewasa</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Tombol Cari Tiket & Notifikasi -->
+    <div
+      class="absolute left-1/2 -translate-x-1/2 w-full max-w-[1440px] px-4"
+      style="top: 490px; z-index: 20"
+    >
+      <div class="relative flex flex-col items-center">
+        <!-- Notifikasi custom jika ada yang kosong -->
+        <div
+          id="notif-kosong"
+          class="hidden mb-4 w-[500px] max-w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg text-base shadow-lg flex items-center gap-3 animate-fade-in"
+          style="z-index: 30"
+          role="alert"
+        >
+          <i class="fa-solid fa-circle-exclamation text-xl"></i>
+          <span>Semua kolom wajib diisi!</span>
+        </div>
+        <button
+          id="cariTiketBtn"
+          class="w-[500px] max-w-full px-6 py-3 rounded-2xl bg-[var(--bg-primary)] text-white font-bold flex items-center gap-3 z-20 text-lg justify-center shadow-lg hover:bg-[var(--bg-secondary)] transition"
+          style="margin-top: 10px"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+          CARI TIKET ANTAR KOTA
+        </button>
+      </div>
+    </div>
+
+    <!-- Artikel/berita dengan gambar kecil scroll horizontal -->
+    <div class="w-full max-w-[1440px] mx-auto mt-7 px-4">
+      <h2 class="text-xl font-bold mb-4">Berita Terbaru</h2>
+      <div class="relative">
+        <!-- Tombol scroll kiri -->
+        <button
+          id="scrollLeft"
+          class="absolute left-[-20px] mt-[140px] -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center transition-all duration-200 border border-gray-200"
+        >
+          <i class="fa fa-chevron-left text-2xl text-gray-700"></i>
+        </button>
+        <!-- Scrollable berita -->
+        <div
+          id="berita-scroll"
+          class="flex gap-8 overflow-x-auto scroll-smooth py-4 px-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
+          style="scrollbar-width: thin"
+        >
+          <!-- Artikel 1 -->
+          <a
+            href="./detailBerita/detailBerita1.html"
+            class="flex-shrink-0 w-[350px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block"
+          >
+            <img
+              src="img/berita1.png"
+              alt="Berita 1"
+              class="object-cover rounded-t-2xl mx-auto"
+            />
+            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+              Sejarah Mode dan Regulasi Transportasi Umum di Jakarta -
+              Kompaspedia
+            </div>
+          </a>
+          <!-- Artikel 2 -->
+          <a
+            href="./detailBerita/detailBerita2.html"
+            class="flex-shrink-0 w-[350px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block"
+          >
+            <img
+              src="img/berita2.png"
+              alt="Berita 2"
+              class="object-cover rounded-t-2xl mx-auto"
+            />
+            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+              Pemprov DKI Gratiskan Transportasi Umum pada 24 April 2025
+            </div>
+          </a>
+          <!-- Artikel 3 -->
+          <a
+            href="./detailBerita/detailBerita3.html"
+            class="flex-shrink-0 w-[350px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block"
+          >
+            <img
+              src="img/berita3.png"
+              alt="Berita 3"
+              class="object-cover rounded-t-2xl mx-auto"
+            />
+            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+              Transjakarta Buka Peluang Kerja Sama dengan Agen Bus Listrik
+            </div>
+          </a>
+          <!-- Artikel 4 -->
+          <a
+            href="detail-berita4.html"
+            class="flex-shrink-0 w-[350px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block"
+          >
+            <img
+              src="img/berita4.png"
+              alt="Berita 4"
+              class="object-cover rounded-t-2xl mx-auto"
+            />
+            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+              Menjajal Kereta Api Whoosh dari Jakarta ke Bandung. - Terah
+              Malioboro News
+            </div>
+          </a>
+          <!-- Artikel 5 -->
+          <a
+            href="./detailBerita/detailBerita5.html"
+            class="flex-shrink-0 w-[350px] bg-white rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200 block"
+          >
+            <img
+              src="img/berita5.png"
+              alt="Berita 5"
+              class="object-cover rounded-t-2xl mx-auto"
+            />
+            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+              718.000 Penumpang Naik Kereta Cepat Whoosh, KCIC: Kenyamanan,
+              Keamanan dan Efisiensi Paling Dicari
+            </div>
+          </a>
+        </div>
+        <!-- Tombol scroll kanan -->
+        <button
+          id="scrollRight"
+          class="absolute right-[-28px] mt-[-150px] -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center transition-all duration-200 border border-gray-200"
+        >
+          <i class="fa fa-chevron-right text-2xl text-gray-700"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-[50px] bg-[#009cf7] h-[280px]">
+      <div class="flex justify-between">
+        <div class="w-[180px] ml-[70px] mt-[10px]">
+          <img
+            class="w-[180px] ml-0 mt-[30px]"
+            src="/img/logoAngkutan.png"
+            alt=""
+          />
+          <div class="mt-[65px]">
+            <p class="text-[12px] text-white mb-[2px]">© 2025 NIKE</p>
+            <p class="text-[12px] text-white mb-[2px]">All rights reserved</p>
+          </div>
+        </div>
+        <div class="text-footer">
+          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+            Resources
+          </p>
+
+          <a href="#" class="text-[14px] text-white mb-[5px] block"
+            >Find A Store</a
+          >
+          <a href="#" class="text-[14px] text-white mb-[5px] block"
+            >Become A Member</a
+          >
+          <a href="#" class="text-[14px] text-white mb-[5px] block"
+            >Education Discounts</a
+          >
+        </div>
+        <div class="text-footer">
+          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+            Help
+          </p>
+
+          <a href="#" class="text-[14px] text-white mb-[5px] block">Get Help</a>
+          <a href="#" class="text-[14px] text-white mb-[5px] block"
+            >Order Status</a
+          >
+          <a href="#" class="text-[14px] text-white mb-[5px] block">Returns</a>
+        </div>
+        <div class="text-footer">
+          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+            Company
+          </p>
+
+          <a href="#" class="text-[14px] text-white mb-[5px] block"
+            >About Nike</a
+          >
+          <a href="#" class="text-[14px] text-white mb-[5px] block">News</a>
+          <a href="#" class="text-[14px] text-white mb-[5px] block">Careers</a>
+        </div>
+        <div class="flex flex-col items-end mr-[70px] mt-[70px]">
+          <div class="flex space-x-8 mb-4">
+            <a href="#" aria-label="Twitter">
+              <i
+                class="fa-brands fa-twitter text-white text-[25px] hover:text-gray-200 transition"
+              ></i>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <i
+                class="fa-brands fa-facebook-f text-white text-[25px] hover:text-gray-200 transition"
+              ></i>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <i
+                class="fa-brands fa-instagram text-white text-[25px] hover:text-gray-200 transition"
+              ></i>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <i
+                class="fa-brands fa-youtube text-white text-[25px] hover:text-gray-200 transition"
+              ></i>
+            </a>
+          </div>
+          <p class="text-[12px] text-white mt-[110px]">
+            Privacy & Cookie Policy
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

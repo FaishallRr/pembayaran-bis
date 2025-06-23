@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home - AngkutIn</title>
 
     <link rel="stylesheet" href="global.css" />
 
@@ -41,25 +41,19 @@
         </div>
         <div class="flex items-center space-x-6 mr-[-30px]">
           <div class="flex items-center space-x-2">
+            <!-- Flag & Language Toggle -->
             <img
+              id="lang-flag"
               src="https://flagcdn.com/id.svg"
               alt="ID"
               class="w-6 h-4 rounded-sm border"
             />
-            <span class="text-sm font-medium">ID | IDR</span>
-            <svg
-              class="w-4 h-4 text-gray-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <span
+              id="lang-text"
+              class="text-sm font-medium cursor-pointer"
+              onclick="toggleLanguage()"
+              >ID | IDR</span
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
           </div>
           <a
             href="#"
@@ -79,9 +73,12 @@
                 %
               </text>
             </svg>
-            <span>Promo</span>
+            <span data-lang="promo">Promo</span>
           </a>
-          <a href="#" class="text-sm font-medium hover:text-[var(--bg-primary)]"
+          <a
+            href="#"
+            class="text-sm font-medium hover:text-[var(--bg-primary)]"
+            data-lang="pesanan"
             >Pesanan</a
           >
           <!-- Dropdown User/Login/Register/Logout -->
@@ -149,6 +146,7 @@
           <div style="position: relative" class="ml-[140px]">
             <button
               class="px-6 py-1 rounded-2xl bg-[var(--bg-primary)] text-white font-bold flex items-center gap-2"
+              data-lang="antarTerminal"
             >
               <i class="fa-solid fa-bus"></i>
               Tiket Bus & Shuttle
@@ -167,14 +165,16 @@
         <!-- Kolom Dari & Ke -->
         <div class="flex flex-col gap-8">
           <div class="flex flex-col gap-2">
-            <div class="font-bold text-lg w-[60px]">Dari</div>
+            <div class="font-bold text-lg w-[60px]" data-lang="dari">Dari</div>
             <div class="relative w-[350px]">
               <select
                 id="terminal-dari"
                 class="w-full px-12 py-3 rounded-2xl bg-[var(--bg-quaternary)] border border-[#C6E9FEFF] text-gray-500 font-semibold focus:outline-none hover:border-[#007acc] hover:bg-[#e6f7ff] hover:shadow-lg focus:border-[#007acc] focus:bg-[#e6f7ff] focus:shadow-lg transition appearance-none"
                 onchange="cekTerminalSama()"
               >
-                <option value="">Pilih Terminal Keberangkatan</option>
+                <option value="" data-lang="pilihterminalkeberangkatan">
+                  Pilih Terminal Keberangkatan
+                </option>
                 <option value="terminal-pulo-gebang">
                   Terminal Pulo Gebang
                 </option>
@@ -207,12 +207,14 @@
                 class="hidden absolute left-0 right-0 top-[110%] bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-lg text-sm shadow-lg z-20 flex items-center gap-2"
               >
                 <i class="fa-solid fa-circle-exclamation"></i>
-                <span>Terminal keberangkatan dan tujuan tidak boleh sama!</span>
+                <span data-lang="termianalTidakBolehSama"
+                  >Terminal keberangkatan dan tujuan tidak boleh sama!</span
+                >
               </div>
             </div>
           </div>
           <div class="flex flex-col gap-2">
-            <div class="font-bold text-lg w-[60px]">Ke</div>
+            <div class="font-bold text-lg w-[60px]" data-lang="ke">Ke</div>
             <div class="relative w-[350px]">
               <select
                 aria-label="Ke"
@@ -220,7 +222,9 @@
                 class="w-full px-12 py-3 rounded-2xl bg-[var(--bg-quaternary)] border border-[#C6E9FEFF] text-gray-500 font-semibold focus:outline-none hover:border-[#007acc] hover:bg-[#e6f7ff] hover:shadow-lg focus:border-[#007acc] focus:bg-[#e6f7ff] focus:shadow-lg transition appearance-none"
                 onchange="cekTerminalSama()"
               >
-                <option value="">Pilih Terminal Tujuan</option>
+                <option value="" data-lang="pilihterminaltujuan">
+                  Pilih Terminal Tujuan
+                </option>
                 <option value="terminal-pulo-gebang">
                   Terminal Pulo Gebang
                 </option>
@@ -253,7 +257,10 @@
         <!-- Kolom Disampingnya -->
         <div class="flex flex-col gap-8">
           <div class="flex flex-col gap-2">
-            <label for="tanggal-berangkat" class="font-bold text-lg w-[60px]"
+            <label
+              for="tanggal-berangkat"
+              class="font-bold text-lg w-[60px]"
+              data-lang="tanggal"
               >Tanggal</label
             >
             <div class="relative w-[350px]">
@@ -276,7 +283,11 @@
             </div>
           </div>
           <div class="flex flex-col gap-2">
-            <label class="font-bold text-lg w-[60px]" for="penumpang">
+            <label
+              class="font-bold text-lg w-[60px]"
+              for="penumpang"
+              data-lang="penumpang"
+            >
               Penumpang
             </label>
             <div class="relative w-[350px]">
@@ -300,7 +311,9 @@
                 <i class="fa-solid fa-chevron-down text-gray-400"></i>
               </div>
             </div>
-            <span class="text-xs text-gray-600 ml-1"
+            <span
+              class="text-xs text-gray-600 ml-1"
+              data-lang="maksimal3Penumpang"
               >Maksimal 3 penumpang dewasa</span
             >
           </div>
@@ -321,12 +334,13 @@
           role="alert"
         >
           <i class="fa-solid fa-circle-exclamation text-xl"></i>
-          <span>Semua kolom wajib diisi!</span>
+          <span data-lang="semuaKolomWajibDiisi">Semua kolom wajib diisi!</span>
         </div>
         <button
           id="cariTiketBtn"
           class="w-[500px] max-w-full px-6 py-3 rounded-2xl bg-[var(--bg-primary)] text-white font-bold flex items-center gap-3 z-20 text-lg justify-center shadow-lg hover:bg-[var(--bg-secondary)] transition"
           style="margin-top: 10px"
+          data-lang="cariTiket"
         >
           <i class="fa-solid fa-magnifying-glass"></i>
           CARI TIKET ANTAR KOTA
@@ -336,7 +350,9 @@
 
     <!-- Artikel/berita dengan gambar kecil scroll horizontal -->
     <div class="w-full max-w-[1440px] mx-auto mt-7 px-4">
-      <h2 class="text-xl font-bold mb-4">Berita Terbaru</h2>
+      <h2 class="text-xl font-bold mb-4" data-lang="latestNewsTitle">
+        Berita Terbaru
+      </h2>
       <div class="relative">
         <!-- Tombol scroll kiri -->
         <button
@@ -361,7 +377,10 @@
               alt="Berita 1"
               class="object-cover rounded-t-2xl mx-auto"
             />
-            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+            <div
+              class="mt-4 text-start text-sm font-bold px-4 pb-4"
+              data-lang="article1Title"
+            >
               Sejarah Mode dan Regulasi Transportasi Umum di Jakarta -
               Kompaspedia
             </div>
@@ -376,7 +395,10 @@
               alt="Berita 2"
               class="object-cover rounded-t-2xl mx-auto"
             />
-            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+            <div
+              class="mt-4 text-start text-sm font-bold px-4 pb-4"
+              data-lang="article2Title"
+            >
               Pemprov DKI Gratiskan Transportasi Umum pada 24 April 2025
             </div>
           </a>
@@ -390,7 +412,10 @@
               alt="Berita 3"
               class="object-cover rounded-t-2xl mx-auto"
             />
-            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+            <div
+              class="mt-4 text-start text-sm font-bold px-4 pb-4"
+              data-lang="article3Title"
+            >
               Transjakarta Buka Peluang Kerja Sama dengan Agen Bus Listrik
             </div>
           </a>
@@ -404,7 +429,10 @@
               alt="Berita 4"
               class="object-cover rounded-t-2xl mx-auto"
             />
-            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+            <div
+              class="mt-4 text-start text-sm font-bold px-4 pb-4"
+              data-lang="article4Title"
+            >
               Menjajal Kereta Api Whoosh dari Jakarta ke Bandung. - Terah
               Malioboro News
             </div>
@@ -419,7 +447,10 @@
               alt="Berita 5"
               class="object-cover rounded-t-2xl mx-auto"
             />
-            <div class="mt-4 text-start text-sm font-bold px-4 pb-4">
+            <div
+              class="mt-4 text-start text-sm font-bold px-4 pb-4"
+              data-lang="article5Title"
+            >
               718.000 Penumpang Naik Kereta Cepat Whoosh, KCIC: Kenyamanan,
               Keamanan dan Efisiensi Paling Dicari
             </div>
@@ -435,6 +466,7 @@
       </div>
     </div>
 
+    <!-- Footer Section -->
     <div class="mt-[50px] bg-[#009cf7] h-[280px]">
       <div class="flex justify-between">
         <div class="w-[180px] ml-[70px] mt-[10px]">
@@ -444,47 +476,102 @@
             alt=""
           />
           <div class="mt-[65px]">
-            <p class="text-[12px] text-white mb-[2px]">© 2025 NIKE</p>
-            <p class="text-[12px] text-white mb-[2px]">All rights reserved</p>
+            <p
+              class="text-[12px] text-white mb-[2px]"
+              data-lang="© 2025 AngkutIn"
+            >
+              © 2025 NIKE
+            </p>
+            <p
+              class="text-[12px] text-white mb-[2px]"
+              data-lang="All rights reserved"
+            >
+              All rights reserved
+            </p>
           </div>
         </div>
+
         <div class="text-footer">
-          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+          <p
+            class="mt-[70px] text-[20px] font-bold text-white mb-[30px]"
+            data-lang="resourcesTitle"
+          >
             Resources
           </p>
-
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="findStore"
             >Find A Store</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="becomeMember"
             >Become A Member</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="educationDiscounts"
             >Education Discounts</a
           >
         </div>
+
         <div class="text-footer">
-          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+          <p
+            class="mt-[70px] text-[20px] font-bold text-white mb-[30px]"
+            data-lang="helpTitle"
+          >
             Help
           </p>
-
-          <a href="#" class="text-[14px] text-white mb-[5px] block">Get Help</a>
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="getHelp"
+            >Get Help</a
+          >
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="orderStatus"
             >Order Status</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block">Returns</a>
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="returns"
+            >Returns</a
+          >
         </div>
+
         <div class="text-footer">
-          <p class="mt-[70px] text-[20px] font-bold text-white mb-[30px]">
+          <p
+            class="mt-[70px] text-[20px] font-bold text-white mb-[30px]"
+            data-lang="companyTitle"
+          >
             Company
           </p>
-
-          <a href="#" class="text-[14px] text-white mb-[5px] block"
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="aboutNike"
             >About Nike</a
           >
-          <a href="#" class="text-[14px] text-white mb-[5px] block">News</a>
-          <a href="#" class="text-[14px] text-white mb-[5px] block">Careers</a>
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="news"
+            >News</a
+          >
+          <a
+            href="#"
+            class="text-[14px] text-white mb-[5px] block"
+            data-lang="careers"
+            >Careers</a
+          >
         </div>
+
         <div class="flex flex-col items-end mr-[70px] mt-[70px]">
           <div class="flex space-x-8 mb-4">
             <a href="#" aria-label="Twitter">
@@ -508,12 +595,157 @@
               ></i>
             </a>
           </div>
-          <p class="text-[12px] text-white mt-[110px]">
+          <p
+            class="text-[12px] text-white mt-[110px]"
+            data-lang="privacyPolicy"
+          >
             Privacy & Cookie Policy
           </p>
         </div>
       </div>
     </div>
+
+    <script>
+      const languageData = {
+        en: {
+          pilihterminaltujuan: "Select Destination Terminal",
+          pilihterminalkeberangkatan: "Select Departure Terminal",
+          semuaKolomWajibDiisi: "All fields are required!",
+          dari: "From",
+          ke: "To",
+          tanggal: "Date",
+          penumpang: "Passengers",
+          maksimal3Penumpang: "Maximum 3 passengers",
+          termianalTidakBolehSama:
+            "Terminals cannot be the same when boarding!",
+          cariTiket: "SEARCH FOR INTERCITY TICKETS",
+          antarTerminal: "Bus & Shuttle Tickets",
+          promo: "Promo",
+          pesanan: "Orders",
+          latestNewsTitle: "Latest News",
+          article1Title:
+            "History of Public Transportation Modes and Regulations in Jakarta - Kompaspedia",
+          article4Title:
+            "Testing the Whoosh Train from Jakarta to Bandung - Terah Malioboro News",
+          article2Title:
+            "DKI Provincial Government to Make Public Transportation Free on April 24, 2025",
+          article3Title:
+            "Transjakarta Opens Opportunities for Cooperation with Electric Bus Agents",
+          article5Title:
+            "718,000 Passengers Ride the Whoosh High-Speed Train, KCIC: Comfort, Safety, and Efficiency Are Most Sought After",
+          resourcesTitle: "Resources",
+          findStore: "Find A Store",
+          becomeMember: "Become A Member",
+          educationDiscounts: "Education Discounts",
+          helpTitle: "Help",
+          getHelp: "Get Help",
+          orderStatus: "Order Status",
+          returns: "Returns",
+          companyTitle: "Company",
+          aboutNike: "About AngkutIn",
+          news: "News",
+          careers: "Careers",
+          privacyPolicy: "Privacy & Cookie Policy",
+        },
+        id: {
+          pilihterminaltujuan: "Pilih Terminal Tujuan",
+          pilihterminalkeberangkatan: "Pilih Terminal Keberangkatan",
+          semuaKolomWajibDiisi: "Semua kolom wajib diisi!",
+          dari: "Dari",
+          ke: "Ke",
+          tanggal: "Tanggal",
+          penumpang: "Penumpang",
+          maksimal3Penumpang: "Maksimal 3 penumpang dewasa",
+          termianalTidakBolehSama:
+            "Terminal keberangkatan dan tujuan tidak boleh sama!",
+          cariTiket: "CARI TIKET ANTAR KOTA",
+          antarTerminal: "Tiket Bus & Antar Jemput",
+          promo: "Promo",
+          pesanan: "Pesanan",
+          latestNewsTitle: "Berita Terbaru",
+          article1Title:
+            "Sejarah Mode dan Regulasi Transportasi Umum di Jakarta - Kompaspedia",
+          article4Title:
+            "Menjajal Kereta Api Whoosh dari Jakarta ke Bandung - Terah Malioboro News",
+          article2Title:
+            "Pemprov DKI Gratiskan Transportasi Umum pada 24 April 2025",
+          article3Title:
+            "Transjakarta Buka Peluang Kerja Sama dengan Agen Bus Listrik",
+          article5Title:
+            "718.000 Penumpang Naik Kereta Cepat Whoosh, KCIC: Kenyamanan, Keamanan dan Efisiensi Paling Dicari",
+          resourcesTitle: "Sumber Daya",
+          findStore: "Temukan Toko",
+          becomeMember: "Jadi Anggota",
+          educationDiscounts: "Diskon Pendidikan",
+          helpTitle: "Bantuan",
+          getHelp: "Dapatkan Bantuan",
+          orderStatus: "Status Pesanan",
+          returns: "Pengembalian",
+          companyTitle: "Perusahaan",
+          aboutNike: "Tentang AngkutIn",
+          news: "Berita",
+          careers: "Karir",
+          privacyPolicy: "Kebijakan Privasi & Cookie",
+        },
+      };
+
+      // Fungsi untuk mengubah bahasa
+      function changeLanguage(language) {
+        const elements = document.querySelectorAll("[data-lang]");
+
+        elements.forEach((element) => {
+          const key = element.getAttribute("data-lang");
+
+          // Menentukan variabel 'text' berdasarkan bahasa yang dipilih
+          let text = languageData[language][key] || key;
+
+          // Cek jika key adalah 'articleText', tambahkan <b> untuk "TEMPO.CO, Jakarta"
+          if (key === "articleText") {
+            text = text.replace(
+              "Jakarta, IDN Times",
+              "<b>Jakarta, IDN Times</b>"
+            ); // Membuat "TEMPO.CO, Jakarta" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          }
+          // Cek jika key adalah 'by', tambahkan <b> untuk "Sulistyawan"
+          else if (key === "by") {
+            text = text.replace("Khusniani", "<b>Khusniani</b>"); // Membuat "Sulistyawan" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          } else {
+            element.innerText = text; // Untuk selain key yang disebutkan, gunakan innerText
+          }
+        });
+
+        // Mengubah flag dan teks bahasa di header
+        const flag =
+          language === "id"
+            ? "https://flagcdn.com/id.svg"
+            : "https://flagcdn.com/gb.svg"; // Mengubah bendera sesuai dengan bahasa yang dipilih
+
+        const langText = language === "id" ? "ID | IDR" : "EN | IDR"; // Menggunakan "IDR" untuk kedua bahasa
+        document.getElementById("lang-flag").src = flag;
+        document.getElementById("lang-text").innerText = langText; // Mengubah teks bahasa di header
+      }
+
+      // Fungsi untuk toggle bahasa antara ID dan EN
+      function toggleLanguage() {
+        const currentLangText = document.getElementById("lang-text").innerText; // Mendapatkan teks saat ini
+        let newLang;
+
+        // Cek teks saat ini, apakah "ID | IDR" atau "EN | IDR"
+        if (currentLangText === "ID | IDR") {
+          newLang = "en"; // Jika "ID | IDR", ganti ke bahasa Inggris (EN)
+        } else {
+          newLang = "id"; // Jika "EN | IDR", ganti ke bahasa Indonesia (ID)
+        }
+
+        // Panggil fungsi untuk mengubah bahasa
+        changeLanguage(newLang);
+      }
+
+      // Set default language (misalnya Bahasa Indonesia)
+      changeLanguage("id");
+    </script>
 
     <script src="./script.js"></script>
   </body>

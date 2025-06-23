@@ -93,7 +93,6 @@ document.getElementById("cariTiketBtn").addEventListener("click", function () {
 
   // Cek apakah semua field sudah diisi
   if (!dari || !ke || !tanggal || !penumpang) {
-    alert("Harap isi semua field!");
     return;
   }
 

@@ -122,7 +122,7 @@ document.querySelectorAll(".pilih-bus-btn").forEach((btn) => {
         <span class="font-semibold text-[#2563eb]">${
           selectedBus.nama
         }</span> &bull; 
-        <span>${selectedBus.tanggal}</span> &bull; 
+        <span>${selectedBus.nomerBus}</span> &bull; 
         <span>${selectedBus.jam}</span> &bull; 
         <span class="text-[#2563eb] font-semibold">Rp${selectedBus.harga.toLocaleString()}</span>
         `;
@@ -183,7 +183,7 @@ document.getElementById("lanjut-btn").addEventListener("click", function () {
   // Data bus dan kursi bisa dikirim via query string
   const params = new URLSearchParams({
     bus: selectedBus.nama,
-    tanggal: selectedBus.tanggal,
+    nomerBus: selectedBus.nomerBus,
     jam: selectedBus.jam,
     harga: selectedBus.harga,
     seat: selectedSeat,

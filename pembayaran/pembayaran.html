@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Pembayaran - AngkutIn</title>
 
     <link rel="stylesheet" href="global.css" />
 
@@ -115,68 +115,223 @@
       </header>
     </div>
 
-    <!-- Metode Pembayaran -->
-    <div class="max-w-xl mx-auto mt-[160px]">
-      <h2
-        class="text-3xl font-bold mb-8 text-[#2563eb] text-center tracking-wide drop-shadow"
+    <div class="max-w-2xl mx-auto mt-[160px] mb-[100px]">
+      <!-- Informasi Pencarian Tiket -->
+      <div
+        id="info-pencarian"
+        class="text-center text-xl font-semibold text-[#2563eb] mb-6 p-6 bg-gradient-to-r from-[#E6F7FF] to-[#A0C4FF] rounded-lg shadow-xl border-2 border-[#2563eb]"
       >
-        Metode Pembayaran
-      </h2>
-      <div class="bg-white rounded-2xl shadow-xl p-8 border border-[#e0e7ef]">
-        <form>
-          <div class="mb-6">
-            <label class="block text-gray-700 font-semibold mb-2"
-              >Pilih Metode Pembayaran:</label
-            >
-            <div class="space-y-3">
-              <label class="flex items-center">
-                <input
-                  type="radio"
-                  name="metode"
-                  value="transfer"
-                  class="form-radio text-blue-600"
-                  checked
-                />
-                <span class="ml-3">Transfer Bank</span>
-              </label>
-              <label class="flex items-center">
-                <input
-                  type="radio"
-                  name="metode"
-                  value="ewallet"
-                  class="form-radio text-blue-600"
-                />
-                <span class="ml-3">E-Wallet (OVO, GoPay, DANA)</span>
-              </label>
-              <label class="flex items-center">
-                <input
-                  type="radio"
-                  name="metode"
-                  value="qris"
-                  class="form-radio text-blue-600"
-                />
-                <span class="ml-3">QRIS</span>
-              </label>
-              <label class="flex items-center">
-                <input
-                  type="radio"
-                  name="metode"
-                  value="minimarket"
-                  class="form-radio text-blue-600"
-                />
-                <span class="ml-3">Minimarket (Alfamart/Indomaret)</span>
-              </label>
-            </div>
-          </div>
-          <button
-            type="submit"
-            class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
-          >
-            Bayar Sekarang
-          </button>
-        </form>
+        <!-- Informasi pencarian tiket akan ditampilkan di sini -->
       </div>
     </div>
+
+    <div class="max-w-2xl mx-auto mt-[-50px] mb-16">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-semibold text-[#2563eb]">Rincian Tiket</h2>
+        <p class="text-lg text-gray-600">
+          Berikut adalah rincian tiket yang telah Anda pilih:
+        </p>
+      </div>
+
+      <!-- Halaman Pembayaran -->
+      <div
+        id="payment-info"
+        class="max-w-2xl mx-auto mt-[160px] mb-[100px]"
+      ></div>
+
+      <script>
+        // Ambil data dari query string (URL)
+        const params = new URLSearchParams(window.location.search);
+        const bus = params.get("bus");
+        const tanggal = params.get("tanggal");
+        const jam = params.get("jam");
+        const harga = params.get("harga");
+        const seat = params.get("seat");
+        const nomerBus = params.get("nomerBus");
+
+        // Menampilkan informasi yang dipilih pengguna
+        const div = document.createElement("div");
+        div.className = "flex items-center justify-center mt-[-130px]"; // Memastikan div ini terpusat di layar
+        div.innerHTML = `
+    <div class="flex flex-col items-center justify-center bg-[#ffffff] rounded-xl shadow p-6 border border-[#e0e7ef] hover:scale-[1.02] hover:shadow-lg transition-all duration-200">
+      <div class="font-bold text-XL text-[#2563eb] mb-3 tracking-wide">Rincian Bus & Seat</div>
+      <div class="text-gray-700 mb-2 flex items-center gap-2 text-sm mt-[20px]">
+        <i class="fa-solid fa-bus text-[#2563eb]"></i>
+        <span>PO Bus : ${bus}</span>
+        <span class="mx-2">|</span>
+        <span>No. Bus : ${nomerBus}</span>
+      </div>
+      <div class="text-gray-700 flex items-center gap-2 text-sm mt-2">
+        <i class="fa fa-clock text-[#2563eb]"></i>
+        <span>Berangkat : ${jam}</span>
+      </div>
+      <div class="text-gray-700 text-sm mt-4">
+        <span>Harga: </span>
+        <span class="font-semibold text-[#2563eb]">Rp${parseInt(
+          harga
+        ).toLocaleString()}</span>
+      </div>
+    </div>
+  `;
+        document.getElementById("payment-info").appendChild(div);
+      </script>
+    </div>
+
+    <!-- Metode Pembayaran -->
+    <div class="max-w-xl mx-auto mt-[60px] mb-[100px]" id="payment-method">
+      <div class="text-lg font-bold">Transfer Antar Bank</div>
+
+      <!-- Button Layouts -->
+      <button
+        id="btn-bni"
+        class="mt-[10px] w-full flex items-center space-x-10 p-2 bg-transparent border-2 border-blue-200 text-black rounded-xl focus:outline-none hover:border-blue-600 transition"
+        onclick="setActiveButton(this)"
+      >
+        <img src="../img/bni.png" alt="bank-icon" class="w-19 h-19" />
+        <span class="text-lg font-bold">BANK BNI</span>
+      </button>
+      <button
+        id="btn-bri"
+        class="mt-[10px] w-full flex items-center space-x-11 p-2 bg-transparent border-2 border-blue-200 text-black rounded-xl focus:outline-none hover:border-blue-600 transition"
+        onclick="setActiveButton(this)"
+      >
+        <img src="../img/bri.png" alt="bank-icon" class="w-19 h-19" />
+        <span class="text-lg font-bold">BANK BRI</span>
+      </button>
+      <button
+        id="btn-jateng"
+        class="mt-[10px] w-full flex items-center space-x-5 p-2 bg-transparent border-2 border-blue-200 text-black rounded-xl focus:outline-none hover:border-blue-600 transition"
+        onclick="setActiveButton(this)"
+      >
+        <img src="../img/jateng.png" alt="bank-icon" class="w-19 h-19" />
+        <span class="text-lg font-bold">BANK JATENG</span>
+      </button>
+      <button
+        id="btn-bca"
+        class="mt-[10px] w-full flex items-center space-x-8 p-2 bg-transparent border-2 border-blue-200 text-black rounded-xl focus:outline-none hover:border-blue-600 transition"
+        onclick="setActiveButton(this)"
+      >
+        <img src="../img/bca.png" alt="bank-icon" class="w-19 h-19" />
+        <span class="text-lg font-bold">BANK BCA</span>
+      </button>
+
+      <!-- QRIS -->
+      <div class="text-lg font-bold mt-[20px]">Qris</div>
+      <button
+        id="btn-qris"
+        class="mt-[10px] w-full flex items-center space-x-8 p-2 bg-transparent border-2 border-blue-200 text-black rounded-xl focus:outline-none hover:border-blue-600 transition"
+        onclick="setActiveButton(this)"
+      >
+        <img src="../img/qris.png" alt="bank-icon" class="w-19 h-19" />
+        <span class="text-lg font-bold">QRIS</span>
+      </button>
+
+      <!-- E-Wallet -->
+      <div class="text-lg font-bold mt-[20px]">E-Wallet</div>
+      <button
+        id="btn-dana"
+        class="mt-[10px] w-full flex items-center space-x-6 p-2 bg-transparent border-2 border-blue-200 text-black rounded-xl focus:outline-none hover:border-blue-600 transition"
+        onclick="setActiveButton(this)"
+      >
+        <img src="../img/dana.png" alt="bank-icon" class="w-19 h-19" />
+        <span class="text-lg font-bold">DANA</span>
+      </button>
+      <button
+        id="btn-gopay"
+        class="mt-[10px] w-full flex items-center space-x-7 p-2 bg-transparent border-2 border-blue-200 text-black rounded-xl focus:outline-none hover:border-blue-600 transition"
+        onclick="setActiveButton(this)"
+      >
+        <img src="../img/gopay.png" alt="bank-icon" class="w-19 h-19" />
+        <span class="text-lg font-bold">GOPAY</span>
+      </button>
+      <button
+        id="btn-shopeepay"
+        class="mt-[10px] w-full flex items-center space-x-9 p-2 bg-transparent border-2 border-blue-200 text-black rounded-xl focus:outline-none hover:border-blue-600 transition"
+        onclick="setActiveButton(this)"
+      >
+        <img src="../img/shopee.png" alt="bank-icon" class="w-19 h-19" />
+        <span class="text-lg font-bold">SHOPEEPAY</span>
+      </button>
+
+      <!-- Next Button -->
+      <div class="mt-6 text-center">
+        <button
+          id="continueBtn"
+          class="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          onclick="goToNextPage()"
+          disabled
+        >
+          SELANJUTNYA
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Function to set active state for buttons
+      function setActiveButton(button) {
+        // Remove selected state from all buttons
+        const allButtons = document.querySelectorAll("#payment-method button");
+        allButtons.forEach((btn) => {
+          btn.classList.remove("ring-4", "ring-blue-500", "bg-blue-100");
+        });
+
+        // Add selected style to clicked button
+        button.classList.add("ring-4", "ring-blue-400", "bg-blue-100");
+
+        // Enable the next button
+        const continueBtn = document.getElementById("continueBtn");
+        continueBtn.disabled = false;
+        continueBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      }
+
+      // Function to handle the "SELANJUTNYA" button click and navigate to the next page
+      function goToNextPage() {
+        // You can check the selected button and redirect accordingly
+        const selectedButton = document.querySelector(
+          "#payment-method button.ring-blue-400"
+        );
+
+        if (selectedButton) {
+          // Check which button is selected and redirect to the corresponding page
+          if (selectedButton.id === "btn-bni") {
+            window.location.href = "./bni-payment.html"; // Change this URL to your destination
+          } else if (selectedButton.id === "btn-bri") {
+            window.location.href = "./bri-payment.html";
+          } else if (selectedButton.id === "btn-jateng") {
+            window.location.href = "./jateng-payment.html";
+          } else if (selectedButton.id === "btn-bca") {
+            window.location.href = "./bca-payment.html";
+          } else if (selectedButton.id === "btn-qris") {
+            window.location.href = "./qris-payment.html";
+          } else if (selectedButton.id === "btn-dana") {
+            window.location.href = "./dana-payment.html";
+          } else if (selectedButton.id === "btn-gopay") {
+            window.location.href = "./gopay-payment.html";
+          } else if (selectedButton.id === "btn-shopeepay") {
+            window.location.href = "./shopeepay-payment.html";
+          }
+        }
+      }
+
+      // Function to detect clicks outside the buttons and reset
+      document.addEventListener("click", function (event) {
+        const paymentMethodDiv = document.getElementById("payment-method");
+        const isClickInside = paymentMethodDiv.contains(event.target);
+
+        // If click is outside, remove selected state
+        if (!isClickInside) {
+          const allButtons = document.querySelectorAll(
+            "#payment-method button"
+          );
+          allButtons.forEach((btn) => {
+            btn.classList.remove("ring-4", "ring-blue-500", "bg-blue-100");
+          });
+          const continueBtn = document.getElementById("continueBtn");
+          continueBtn.disabled = true;
+          continueBtn.classList.add("opacity-50", "cursor-not-allowed");
+        }
+      });
+    </script>
 
     <script src="../kursi/script.js"></script>
   </body>

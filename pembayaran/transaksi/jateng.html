@@ -80,7 +80,7 @@
               type="button"
             >
               <i class="fa-solid fa-user mr-3" style="color: #009cf7"></i>
-              <span id="user-dropdown-text">charismaekapratiwi@gmail.com</span>
+              <span id="user-dropdown-text">Log In</span>
               <svg
                 class="ml-2 w-4 h-4"
                 fill="none"
@@ -100,8 +100,24 @@
               class="hidden absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-lg z-50 py-2 border border-gray-100"
             >
               <button
+                id="dropdown-login-btn"
+                class="w-full text-left px-4 py-2 text-sm hover:bg-[var(--bg-quaternary)] transition flex items-center"
+                onclick="window.location.href='./login/login.html'"
+                type="button"
+              >
+                <i class="fa-solid fa-right-to-bracket mr-2"></i> Log In
+              </button>
+              <button
+                id="dropdown-register-btn"
+                class="w-full text-left px-4 py-2 text-sm hover:bg-[var(--bg-quaternary)] transition flex items-center"
+                onclick="window.location.href='./register/register.html'"
+                type="button"
+              >
+                <i class="fa-solid fa-user-plus mr-2"></i> Daftar
+              </button>
+              <button
                 id="dropdown-logout-btn"
-                class="w-full text-left px-4 py-2 text-sm hover:bg-red-100 text-red-600 transition flex items-center"
+                class="w-full text-left px-4 py-2 text-sm hover:bg-red-100 text-red-600 transition flex items-center hidden"
                 type="button"
               >
                 <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
@@ -380,29 +396,50 @@
     </script>
 
     <script>
-      // Ambil elemen dropdown
-      const dropdownButton = document.getElementById("user-dropdown-btn");
+      // user sudah login
+      const user = JSON.parse(localStorage.getItem("User"));
+      const dropdownBtn = document.getElementById("user-dropdown-btn");
       const dropdownMenu = document.getElementById("user-dropdown-menu");
+      const dropdownLoginBtn = document.getElementById("dropdown-login-btn");
+      const dropdownRegisterBtn = document.getElementById(
+        "dropdown-register-btn"
+      );
+      const dropdownLogoutBtn = document.getElementById("dropdown-logout-btn");
+      const dropdownText = document.getElementById("user-dropdown-text");
 
-      // Tambahkan event listener untuk menampilkan/menyembunyikan dropdown saat tombol diklik
-      dropdownButton.addEventListener("click", () => {
-        // Cek apakah dropdown sedang disembunyikan, jika ya, tampilkan
-        if (dropdownMenu.classList.contains("hidden")) {
-          dropdownMenu.classList.remove("hidden");
-        } else {
-          dropdownMenu.classList.add("hidden");
-        }
+      // Show/hide dropdown
+      dropdownBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle("hidden");
       });
 
-      // Menutup dropdown saat klik di luar elemen
-      document.addEventListener("click", (event) => {
-        if (
-          !dropdownButton.contains(event.target) &&
-          !dropdownMenu.contains(event.target)
-        ) {
-          dropdownMenu.classList.add("hidden");
-        }
+      // Hide dropdown when clicking outside
+      document.addEventListener("click", function () {
+        dropdownMenu.classList.add("hidden");
       });
+
+      // User state logic
+      if (user && user.email) {
+        dropdownText.textContent = user.email;
+        dropdownLoginBtn.style.display = "none";
+        dropdownRegisterBtn.style.display = "none";
+        dropdownLogoutBtn.classList.remove("hidden");
+      } else {
+        dropdownText.textContent = "Log In";
+        dropdownLoginBtn.style.display = "";
+        dropdownRegisterBtn.style.display = "";
+        dropdownLogoutBtn.classList.add("hidden");
+      }
+
+      // Logout
+      dropdownLogoutBtn &&
+        dropdownLogoutBtn.addEventListener("click", function () {
+          localStorage.removeItem("User");
+          localStorage.removeItem("pencarianTiket");
+          localStorage.removeItem("selectedBus");
+          localStorage.removeItem("selectedSeat");
+          window.location.reload();
+        });
     </script>
 
     <script src="../transaksi/script.js"></script>

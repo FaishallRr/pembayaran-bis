@@ -1,17 +1,3 @@
-// Ambil elemen dropdown
-const dropdownButton = document.getElementById("user-dropdown-btn");
-const dropdownMenu = document.getElementById("user-dropdown-menu");
-
-// Tambahkan event listener untuk menampilkan/menyembunyikan dropdown saat tombol diklik
-dropdownButton.addEventListener("click", () => {
-  // Cek apakah dropdown sedang disembunyikan, jika ya, tampilkan
-  if (dropdownMenu.classList.contains("hidden")) {
-    dropdownMenu.classList.remove("hidden");
-  } else {
-    dropdownMenu.classList.add("hidden");
-  }
-});
-
 // Menutup dropdown saat klik di luar elemen
 document.addEventListener("click", (event) => {
   if (
@@ -233,3 +219,46 @@ document.getElementById("lanjut-btn").addEventListener("click", function () {
     console.log("Data bus atau kursi belum dipilih.");
   }
 });
+
+// user sudah login
+const user = JSON.parse(localStorage.getItem("User"));
+const dropdownBtn = document.getElementById("user-dropdown-btn");
+const dropdownMenu = document.getElementById("user-dropdown-menu");
+const dropdownLoginBtn = document.getElementById("dropdown-login-btn");
+const dropdownRegisterBtn = document.getElementById("dropdown-register-btn");
+const dropdownLogoutBtn = document.getElementById("dropdown-logout-btn");
+const dropdownText = document.getElementById("user-dropdown-text");
+
+// Show/hide dropdown
+dropdownBtn.addEventListener("click", function (e) {
+  e.stopPropagation();
+  dropdownMenu.classList.toggle("hidden");
+});
+
+// Hide dropdown when clicking outside
+document.addEventListener("click", function () {
+  dropdownMenu.classList.add("hidden");
+});
+
+// User state logic
+if (user && user.email) {
+  dropdownText.textContent = user.email;
+  dropdownLoginBtn.style.display = "none";
+  dropdownRegisterBtn.style.display = "none";
+  dropdownLogoutBtn.classList.remove("hidden");
+} else {
+  dropdownText.textContent = "Log In";
+  dropdownLoginBtn.style.display = "";
+  dropdownRegisterBtn.style.display = "";
+  dropdownLogoutBtn.classList.add("hidden");
+}
+
+// Logout
+dropdownLogoutBtn &&
+  dropdownLogoutBtn.addEventListener("click", function () {
+    localStorage.removeItem("User");
+    localStorage.removeItem("pencarianTiket");
+    localStorage.removeItem("selectedBus");
+    localStorage.removeItem("selectedSeat");
+    window.location.reload();
+  });

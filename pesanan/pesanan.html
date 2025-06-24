@@ -193,7 +193,7 @@
         if (!isValid) {
           // Tampilkan pesan jika belum ada pesanan dan sembunyikan elemen lainnya
           infoPencarianDiv.innerHTML = `
-    <div class="text-center text-lg font-semibold p-6 rounded-xl mt-[25px] mb-6">
+    <div class="text-center text-lg font-semibold p-6 rounded-xl mt-[25px] mb-6" data-lang="belumAdaPesanan">
       Belum ada pesanan. Silakan pilih tiket terlebih dahulu.
     </div>
   `;
@@ -264,6 +264,8 @@
     <script>
       const languageData = {
         en: {
+          belumAdaPesanan:
+            "There are no orders yet. Please select a ticket first.",
           pesanan: "Orders",
           pencarianTiket: "Search Tickets",
           rincianTiket: "Ticket Details",
@@ -280,6 +282,8 @@
           nomerRekening: "12121221313154324524",
         },
         id: {
+          belumAdaPesanan:
+            "Belum ada pesanan. Silakan pilih tiket terlebih dahulu.",
           pesanan: "Pesanan",
           pencarianTiket: "Cari Tiket",
           rincianTiket: "Rincian Tiket",

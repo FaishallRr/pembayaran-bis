@@ -32,28 +32,22 @@
         </div>
         <div class="flex items-center space-x-6 mr-[-30px]">
           <div class="flex items-center space-x-2">
+            <!-- Flag & Language Toggle -->
             <img
+              id="lang-flag"
               src="https://flagcdn.com/id.svg"
               alt="ID"
               class="w-6 h-4 rounded-sm border"
             />
-            <span class="text-sm font-medium">ID | IDR</span>
-            <svg
-              class="w-4 h-4 text-gray-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <span
+              id="lang-text"
+              class="text-sm font-medium cursor-pointer"
+              onclick="toggleLanguage()"
+              >ID | IDR</span
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
           </div>
           <a
-            href="#"
+            href="../promo/promo.html"
             class="flex items-center space-x-1 text-sm font-medium hover:text-[var(--bg-primary)]"
           >
             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
@@ -72,7 +66,10 @@
             </svg>
             <span>Promo</span>
           </a>
-          <a href="#" class="text-sm font-medium hover:text-[var(--bg-primary)]"
+          <a
+            href="../pesanan/pesanan.html"
+            class="text-sm font-medium hover:text-[var(--bg-primary)]"
+            data-lang="pesanan"
             >Pesanan</a
           >
           <!-- Dropdown User/Login/Register/Logout -->
@@ -127,8 +124,13 @@
 
     <div class="max-w-2xl mx-auto mt-[-50px] mb-16">
       <div class="text-center mb-8">
-        <h2 class="text-2xl font-semibold text-[#2563eb]">Rincian Tiket</h2>
-        <p class="text-lg text-gray-600">
+        <h2
+          class="text-2xl font-semibold text-[#2563eb]"
+          data-lang="rincianTiket"
+        >
+          Rincian Tiket
+        </h2>
+        <p class="text-lg text-gray-600" data-lang="rincianTiketBerikut">
           Berikut adalah rincian tiket yang telah Anda pilih:
         </p>
       </div>
@@ -154,18 +156,21 @@
         div.className = "flex items-center justify-center mt-[-130px]"; // Memastikan div ini terpusat di layar
         div.innerHTML = `
     <div class="flex flex-col items-center justify-center bg-[#ffffff] rounded-xl shadow p-6 border border-[#e0e7ef] hover:scale-[1.02] hover:shadow-lg transition-all duration-200">
-      <div class="font-bold text-XL text-[#2563eb] mb-3 tracking-wide">Rincian Bus & Seat</div>
+      <div class="font-bold text-XL text-[#2563eb] mb-3 tracking-wide" data-lang="rincianData" >Rincian Bus & Tempat Duduk</div>
       <div class="text-gray-700 mb-2 flex items-center gap-2 text-sm mt-[20px]">
         <i class="fa-solid fa-bus text-[#2563eb]"></i>
-        <span>PO Bus : ${bus}</span>
+        <b><span>PO Bus : ${bus}</span></b>
         <span class="mx-2">|</span>
-        <span>No. Bus : ${nomerBus}</span>
+        <b><span>No. Bus : ${nomerBus}</span></b>
+      </div>
+      <div class="text-gray-700 flex items-center gap-2 text-sm mt-0">
+        <i class="fa fa-clock text-[#2563eb]"></i>
+        <b><span>Berangkat : ${jam}</span></b>
       </div>
       <div class="text-gray-700 flex items-center gap-2 text-sm mt-2">
-        <i class="fa fa-clock text-[#2563eb]"></i>
-        <span>Berangkat : ${jam}</span>
+        <span>tempat duduk : ${seat}</span>
       </div>
-      <div class="text-gray-700 text-sm mt-4">
+      <div class="text-gray-700 text-sm mt-2">
         <span>Harga: </span>
         <span class="font-semibold text-[#2563eb]">Rp${parseInt(
           harga
@@ -178,8 +183,10 @@
     </div>
 
     <!-- Metode Pembayaran -->
-    <div class="max-w-xl mx-auto mt-[60px] mb-[100px]" id="payment-method">
-      <div class="text-lg font-bold">Transfer Antar Bank</div>
+    <div class="max-w-xl mx-auto mt-[30px] mb-[100px]" id="payment-method">
+      <div class="text-lg font-bold" data-lang="transferAntarBank">
+        Transfer Antar Bank
+      </div>
 
       <!-- Button Layouts -->
       <button
@@ -294,21 +301,21 @@
         if (selectedButton) {
           // Check which button is selected and redirect to the corresponding page
           if (selectedButton.id === "btn-bni") {
-            window.location.href = "./bni-payment.html"; // Change this URL to your destination
+            window.location.href = "../pembayaran/transaksi/bni.html"; // Change this URL to your destination
           } else if (selectedButton.id === "btn-bri") {
-            window.location.href = "./bri-payment.html";
+            window.location.href = "../pembayaran/transaksi/bri.html";
           } else if (selectedButton.id === "btn-jateng") {
-            window.location.href = "./jateng-payment.html";
+            window.location.href = "../pembayaran/transaksi/jateng.html";
           } else if (selectedButton.id === "btn-bca") {
-            window.location.href = "./bca-payment.html";
+            window.location.href = "../pembayaran/transaksi/bca.html";
           } else if (selectedButton.id === "btn-qris") {
-            window.location.href = "./qris-payment.html";
+            window.location.href = "../pembayaran/transaksi/qris.html";
           } else if (selectedButton.id === "btn-dana") {
-            window.location.href = "./dana-payment.html";
+            window.location.href = "../pembayaran/transaksi/dana.html";
           } else if (selectedButton.id === "btn-gopay") {
-            window.location.href = "./gopay-payment.html";
+            window.location.href = "../pembayaran/transaksi/gopay.html";
           } else if (selectedButton.id === "btn-shopeepay") {
-            window.location.href = "./shopeepay-payment.html";
+            window.location.href = "../pembayaran/transaksi/shopeepay.html";
           }
         }
       }
@@ -331,6 +338,86 @@
           continueBtn.classList.add("opacity-50", "cursor-not-allowed");
         }
       });
+    </script>
+
+    <script>
+      const languageData = {
+        en: {
+          pencarianTiket: "Search Tickets",
+          rincianTiket: "Ticket Details",
+          rincianTiketBerikut:
+            "Here are the details of the ticket you have selected:",
+          transferAntarBank: "Transfer to Bank Account",
+          pesanan: "Orders",
+          rincianData: "Bus & Seat Details",
+        },
+        id: {
+          pencarianTiket: "Cari Tiket",
+          rincianTiket: "Rincian Tiket",
+          rincianTiketBerikut:
+            "Berikut adalah rincian tiket yang telah Anda pilih:",
+          transferAntarBank: "Transfer ke Rekening Bank",
+          pesanan: "Pesanan",
+          rincianData: "Rincian Bus & Tempat Duduk",
+        },
+      };
+
+      // Fungsi untuk mengubah bahasa
+      function changeLanguage(language) {
+        const elements = document.querySelectorAll("[data-lang]");
+
+        elements.forEach((element) => {
+          const key = element.getAttribute("data-lang");
+
+          // Menentukan variabel 'text' berdasarkan bahasa yang dipilih
+          let text = languageData[language][key] || key;
+
+          // Cek jika key adalah 'articleText', tambahkan <b> untuk "TEMPO.CO, Jakarta"
+          if (key === "articleText") {
+            text = text.replace(
+              "Jakarta, IDN Times",
+              "<b>Jakarta, IDN Times</b>"
+            ); // Membuat "TEMPO.CO, Jakarta" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          }
+          // Cek jika key adalah 'by', tambahkan <b> untuk "Sulistyawan"
+          else if (key === "by") {
+            text = text.replace("Khusniani", "<b>Khusniani</b>"); // Membuat "Sulistyawan" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          } else {
+            element.innerText = text; // Untuk selain key yang disebutkan, gunakan innerText
+          }
+        });
+
+        // Mengubah flag dan teks bahasa di header
+        const flag =
+          language === "id"
+            ? "https://flagcdn.com/id.svg"
+            : "https://flagcdn.com/gb.svg"; // Mengubah bendera sesuai dengan bahasa yang dipilih
+
+        const langText = language === "id" ? "ID | IDR" : "EN | IDR"; // Menggunakan "IDR" untuk kedua bahasa
+        document.getElementById("lang-flag").src = flag;
+        document.getElementById("lang-text").innerText = langText; // Mengubah teks bahasa di header
+      }
+
+      // Fungsi untuk toggle bahasa antara ID dan EN
+      function toggleLanguage() {
+        const currentLangText = document.getElementById("lang-text").innerText; // Mendapatkan teks saat ini
+        let newLang;
+
+        // Cek teks saat ini, apakah "ID | IDR" atau "EN | IDR"
+        if (currentLangText === "ID | IDR") {
+          newLang = "en"; // Jika "ID | IDR", ganti ke bahasa Inggris (EN)
+        } else {
+          newLang = "id"; // Jika "EN | IDR", ganti ke bahasa Indonesia (ID)
+        }
+
+        // Panggil fungsi untuk mengubah bahasa
+        changeLanguage(newLang);
+      }
+
+      // Set default language (misalnya Bahasa Indonesia)
+      changeLanguage("id");
     </script>
 
     <script src="../kursi/script.js"></script>

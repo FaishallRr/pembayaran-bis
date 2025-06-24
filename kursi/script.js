@@ -31,7 +31,7 @@ if (pencarianTiket) {
   div.className = "flex items-center justify-center"; // Memastikan div ini terpusat di layar
   div.innerHTML = `
     <div class="flex flex-col items-center justify-center bg-[#ffffff] rounded-xl shadow p-6 border border-[#e0e7ef] hover:scale-[1.02] hover:shadow-lg transition-all duration-200">
-      <div class="font-bold text-XL text-[#2563eb] mb-3 tracking-wide">Pencarian Tiket</div>
+      <div class="font-bold text-XL text-[#2563eb] mb-3 tracking-wide" data-lang="pencarianTiket">Pencarian Tiket</div>
       <div class="text-gray-700 mb-2 flex items-center gap-2 text-sm mt-[10px]">
         <i class="fa-solid fa-location-arrow text-[#2563eb]"></i>
         <span>Dari: ${pencarianTiket.dari}</span>
@@ -117,31 +117,50 @@ let selectedBus = null;
 let selectedSeat = null;
 document.querySelectorAll(".pilih-bus-btn").forEach((btn) => {
   btn.addEventListener("click", function () {
+    // Ambil data bus berdasarkan ID
     selectedBus = buses.find((b) => b.id == this.dataset.id);
+
+    // Menyimpan data bus yang dipilih ke localStorage
+    localStorage.setItem("selectedBus", JSON.stringify(selectedBus));
+
+    // Menyimpan kursi yang dipilih ke localStorage setelah kursi dipilih
+    if (selectedSeat) {
+      localStorage.setItem("selectedSeat", selectedSeat);
+    }
+
+    // Debugging untuk memastikan data tersimpan dengan benar
+    console.log("Selected Bus:", localStorage.getItem("selectedBus"));
+    console.log("Selected Seat:", localStorage.getItem("selectedSeat"));
+
+    // Menampilkan informasi bus yang dipilih
     document.getElementById("bus-info").innerHTML = `
-        <span class="font-semibold text-[#2563eb]">${
-          selectedBus.nama
-        }</span> &bull; 
-        <span>${selectedBus.nomerBus}</span> &bull; 
-        <span>${selectedBus.jam}</span> &bull; 
-        <span class="text-[#2563eb] font-semibold">Rp${selectedBus.harga.toLocaleString()}</span>
-        `;
+      <span class="font-semibold text-[#2563eb]">${
+        selectedBus.nama
+      }</span> &bull; 
+      <span>${selectedBus.nomerBus}</span> &bull; 
+      <span>${selectedBus.jam}</span> &bull; 
+      <span class="text-[#2563eb] font-semibold">Rp${selectedBus.harga.toLocaleString()}</span>
+    `;
+
+    // Tampilkan bagian kursi
     document.getElementById("seat-section").classList.remove("hidden");
     window.scrollTo({
       top: document.getElementById("seat-section").offsetTop - 40,
       behavior: "smooth",
     });
+
     generateSeats();
   });
 });
 
 // Generate kursi
+// Generate kursi
 function generateSeats() {
   const seatMap = document.getElementById("seat-map");
-  seatMap.innerHTML = "";
-  selectedSeat = null;
-  document.getElementById("lanjut-btn").disabled = true;
-  // 20 seats, 4 per row, 1 aisle
+  seatMap.innerHTML = ""; // Menghapus kursi sebelumnya
+  document.getElementById("lanjut-btn").disabled = true; // Pastikan tombol disabled saat pertama kali
+
+  // 20 kursi, 4 per baris, 1 lorong
   for (let i = 1; i <= 20; i++) {
     const seatBtn = document.createElement("button");
     seatBtn.className =
@@ -152,17 +171,18 @@ function generateSeats() {
         `;
     seatBtn.dataset.seat = i;
     seatBtn.addEventListener("click", function () {
-      document
-        .querySelectorAll("#seat-map button")
-        .forEach((b) =>
-          b.classList.remove(
-            "bg-[#2563eb]",
-            "text-white",
-            "ring-2",
-            "ring-[#2563eb]",
-            "scale-110"
-          )
+      // Menghapus status yang dipilih dari semua kursi
+      document.querySelectorAll("#seat-map button").forEach((b) => {
+        b.classList.remove(
+          "bg-[#2563eb]",
+          "text-white",
+          "ring-2",
+          "ring-[#2563eb]",
+          "scale-110"
         );
+      });
+
+      // Menandai kursi yang dipilih
       this.classList.add(
         "bg-[#2563eb]",
         "text-white",
@@ -170,23 +190,46 @@ function generateSeats() {
         "ring-[#2563eb]",
         "scale-110"
       );
-      selectedSeat = this.dataset.seat;
+      selectedSeat = this.dataset.seat; // Menyimpan kursi yang dipilih
+
+      // Menyimpan nomor kursi ke localStorage
+      localStorage.setItem("selectedSeat", selectedSeat);
+
+      // Mengaktifkan tombol lanjutkan setelah kursi dipilih
       document.getElementById("lanjut-btn").disabled = false;
+
+      // Debugging untuk memastikan data tersimpan
+      console.log("Selected Seat:", selectedSeat);
     });
     seatMap.appendChild(seatBtn);
   }
 }
 
-// Lanjutkan
+// Menyimpan nomor kursi yang dipilih ke localStorage
+localStorage.setItem("selectedSeat", selectedSeat);
+
+console.log("Selected Seat:", selectedSeat); // Verifikasi nilai kursi yang dipilih
+
+// Setelah memilih bus dan kursi
 document.getElementById("lanjut-btn").addEventListener("click", function () {
-  // Redirect ke halaman form selanjutnya, misal: form-pembayaran.html
-  // Data bus dan kursi bisa dikirim via query string
-  const params = new URLSearchParams({
-    bus: selectedBus.nama,
-    nomerBus: selectedBus.nomerBus,
-    jam: selectedBus.jam,
-    harga: selectedBus.harga,
-    seat: selectedSeat,
-  });
-  window.location.href = `../pembayaran/pembayaran.html?${params.toString()}`;
+  // Pastikan data dipilih dan dikirim melalui query string
+  if (selectedBus && selectedSeat) {
+    // Simpan data bus dan kursi ke localStorage
+    localStorage.setItem("selectedBus", JSON.stringify(selectedBus));
+    localStorage.setItem("selectedSeat", selectedSeat);
+
+    // Menyusun parameter untuk query string
+    const params = new URLSearchParams({
+      bus: selectedBus.nama, // Nama bus
+      nomerBus: selectedBus.nomerBus, // Nomor bus
+      jam: selectedBus.jam, // Jam keberangkatan
+      harga: selectedBus.harga, // Harga tiket
+      seat: selectedSeat, // Tempat duduk yang dipilih
+    });
+
+    // Redirect ke halaman pembayaran dengan query string yang lengkap
+    window.location.href = `../pembayaran/pembayaran.html?${params.toString()}`;
+  } else {
+    console.log("Data bus atau kursi belum dipilih.");
+  }
 });

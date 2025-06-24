@@ -81,6 +81,9 @@ if (user && user.email) {
 dropdownLogoutBtn &&
   dropdownLogoutBtn.addEventListener("click", function () {
     localStorage.removeItem("User");
+    localStorage.removeItem("pencarianTiket");
+    localStorage.removeItem("selectedBus");
+    localStorage.removeItem("selectedSeat");
     window.location.reload();
   });
 
@@ -117,16 +120,4 @@ document.getElementById("cariTiketBtn").addEventListener("click", function () {
 
   // Lanjut ke halaman pemilihan bus
   window.location.href = "./kursi/kursi.html";
-});
-
-//data dikirim ke excel
-const simpanTanggal = document.getElementById("tanggal-berangkat");
-simpanTanggal.addEventListener("change", function () {
-  const tanggal = this.value;
-  // Kirim data ke backend (misal pakai fetch ke endpoint API)
-  fetch("/api/simpan-tanggal", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ kolom: "Pilih tanggal berangkat", tanggal }),
-  });
 });

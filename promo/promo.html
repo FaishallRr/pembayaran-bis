@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Promo - AngkutIn</title>
+    <title>Pembayaran - AngkutIn</title>
 
     <link rel="stylesheet" href="global.css" />
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -16,100 +17,291 @@
     />
   </head>
   <body>
-    <!-- Header Section with Language Toggle -->
-    <header
-      class="flex items-center justify-between w-full max-w-[1440px] px-4 py-2"
-    >
-      <div class="flex items-center">
-        <a href="/index.html">
-          <img
-            src="../img/logoAngkutan.png"
-            alt="logo"
-            class="w-[120px] ml-[60px]"
-          />
-        </a>
-      </div>
-      <div class="flex items-center space-x-6">
-        <div class="flex items-center space-x-2">
-          <!-- Flag & Language Toggle -->
-          <img
-            id="lang-flag"
-            src="https://flagcdn.com/id.svg"
-            alt="ID"
-            class="w-6 h-4 rounded-sm border"
-          />
-          <span
-            id="lang-text"
-            class="text-sm font-medium cursor-pointer"
-            onclick="toggleLanguage()"
-            >ID | IDR</span
-          >
+    <div class="w-full mt-[10px] mb-[]">
+      <header
+        class="flex items-center justify-between w-full max-w-[1440px] px-4 py-2 absolute top-0 left-1/2 -translate-x-1/2 ml-[-50px]"
+      >
+        <div class="flex items-center">
+          <a href="/index.html">
+            <img
+              src="../../img/logoAngkutan.png"
+              alt="logo"
+              class="w-[120px] ml-[60px]"
+            />
+          </a>
         </div>
-      </div>
-    </header>
+        <div class="flex items-center space-x-6 mr-[-30px]">
+          <div class="flex items-center space-x-2">
+            <!-- Flag & Language Toggle -->
+            <img
+              id="lang-flag"
+              src="https://flagcdn.com/id.svg"
+              alt="ID"
+              class="w-6 h-4 rounded-sm border"
+            />
+            <span
+              id="lang-text"
+              class="text-sm font-medium cursor-pointer"
+              onclick="toggleLanguage()"
+              >ID | IDR</span
+            >
+          </div>
+          <a
+            href="../promo/promo.html"
+            class="flex items-center space-x-2 text-sm font-medium hover:text-[var(--bg-primary)]"
+          >
+            <!-- Ikon SVG Promo -->
+            <svg
+              class="w-6 h-6"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="12" cy="12" r="10" fill="#E6F7FF" />
+              <text
+                x="12"
+                y="16"
+                text-anchor="middle"
+                font-size="14"
+                fill="#4CAF50"
+                font-family="Arial, sans-serif"
+                font-weight="bold"
+              >
+                %
+              </text>
+            </svg>
+            <span>Promo</span>
+          </a>
+          <a
+            href="../pesanan/pesanan.html"
+            class="text-sm font-medium hover:text-[var(--bg-primary)]"
+            data-lang="pesanan"
+            >Pesanan</a
+          >
+          <!-- Dropdown User/Login/Register/Logout -->
+          <div class="relative" id="user-dropdown-container">
+            <button
+              id="user-dropdown-btn"
+              class="flex items-center px-3.5 py-2 border border-[#009CF7] rounded-xl text-sm text-black font-medium hover:bg-[var(--bg-tertiary)] transition focus:outline-none"
+              type="button"
+            >
+              <i class="fa-solid fa-user mr-3" style="color: #009cf7"></i>
+              <span id="user-dropdown-text">Log In</span>
+              <svg
+                class="ml-2 w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              id="user-dropdown-menu"
+              class="hidden absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-lg z-50 py-2 border border-gray-100"
+            >
+              <button
+                id="dropdown-login-btn"
+                class="w-full text-left px-4 py-2 text-sm hover:bg-[var(--bg-quaternary)] transition flex items-center"
+                onclick="window.location.href='./login/login.html'"
+                type="button"
+              >
+                <i class="fa-solid fa-right-to-bracket mr-2"></i> Log In
+              </button>
+              <button
+                id="dropdown-register-btn"
+                class="w-full text-left px-4 py-2 text-sm hover:bg-[var(--bg-quaternary)] transition flex items-center"
+                onclick="window.location.href='./register/register.html'"
+                type="button"
+              >
+                <i class="fa-solid fa-user-plus mr-2"></i> Daftar
+              </button>
+              <button
+                id="dropdown-logout-btn"
+                class="w-full text-left px-4 py-2 text-sm hover:bg-red-100 text-red-600 transition flex items-center hidden"
+                type="button"
+              >
+                <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
 
-    <!-- Promo Section -->
-    <div class="promo-section text-center mt-10">
-      <h2 class="text-xl font-bold mb-4" data-lang="promoTitle">Promo</h2>
-      <p class="text-md" data-lang="promoDescription">
-        Dapatkan diskon hingga 50% untuk pembelian tiket bus berikutnya! Jangan
-        lewatkan kesempatan luar biasa ini. Berlaku dari 1 April hingga 30 April
-        2025.
+    <div
+      class="flex flex-col items-center justify-center text-center p-6 mt-[200px] mb-6 rounded-xl border-2 border-dashed border-[#fbbf24] bg-[#fffbea] mt-[300px] shadow-lg max-w-md mx-auto transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105"
+    >
+      <!-- Icon -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-12 w-12 text-[#f59e0b] mb-4 animate-bounce"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 13h6m-3-3v6m8 4H5a2 2 0 01-2-2V5a2 2 0 012-2h9l5 5v13a2 2 0 01-2 2z"
+        />
+      </svg>
+
+      <!-- Text -->
+      <h2 class="text-lg font-bold text-[#92400e] mb-1">
+        Belum ada Kode Promo
+      </h2>
+      <p class="text-sm text-[#92400e]">
+        Silakan kembali lagi nanti untuk penawaran menarik!
       </p>
     </div>
 
-    <!-- Script for Changing Language -->
     <script>
       const languageData = {
         en: {
-          promoTitle: "Promo",
-          promoDescription:
-            "Get up to 50% off on your next bus ticket purchase! Don't miss out on this amazing opportunity. Valid from April 1st to April 30th, 2025.",
+          pesanan: "Orders",
+          pencarianTiket: "Search Tickets",
+          rincianTiket: "Ticket Details",
+          rincianTiketBerikut:
+            "Here are the details of the ticket you have selected:",
+          rincianTransaksi: "Transaction Details",
+          pembayaranViaBank: "Payment via BANK BCA",
+          instruksiPembayaran1: "1. Open the BANK BCA app on your smartphone.",
+          instruksiPembayaran2: "2. Select the 'Transfer' menu.",
+          instruksiPembayaran3: "3. Enter the recipient's bank account number:",
+          instruksiPembayaran4: "4. Enter the amount to be paid.",
+          instruksiPembayaran5:
+            "5. Follow the instructions until the transaction is successful.",
+          nomerRekening: "12121221313154324524",
         },
         id: {
-          promoTitle: "Promo",
-          promoDescription:
-            "Dapatkan diskon hingga 50% untuk pembelian tiket bus berikutnya! Jangan lewatkan kesempatan luar biasa ini. Berlaku dari 1 April hingga 30 April 2025.",
+          pesanan: "Pesanan",
+          pencarianTiket: "Cari Tiket",
+          rincianTiket: "Rincian Tiket",
+          rincianTiketBerikut:
+            "Berikut adalah rincian tiket yang telah Anda pilih:",
+          rincianTransaksi: "Rincian Transaksi",
+          pembayaranViaBank: "Pembayaran via BANK BCA",
+          instruksiPembayaran1: "1. Buka aplikasi BANK BCA di smartphone Anda.",
+          instruksiPembayaran2: "2. Pilih menu 'Transfer'.",
+          instruksiPembayaran3: "3. Masukkan nomor rekening BANK BCA tujuan:",
+          instruksiPembayaran4:
+            "4. Masukkan jumlah sesuai dengan total pembayaran.",
+          instruksiPembayaran5: "5. Ikuti petunjuk hingga transaksi berhasil.",
+          nomerRekening: "12121221313154324524",
         },
       };
 
-      // Function to Change Language
+      // Fungsi untuk mengubah bahasa
       function changeLanguage(language) {
         const elements = document.querySelectorAll("[data-lang]");
 
         elements.forEach((element) => {
           const key = element.getAttribute("data-lang");
+
+          // Menentukan variabel 'text' berdasarkan bahasa yang dipilih
           let text = languageData[language][key] || key;
-          element.innerText = text; // Update the text content for the element
+
+          // Cek jika key adalah 'articleText', tambahkan <b> untuk "TEMPO.CO, Jakarta"
+          if (key === "articleText") {
+            text = text.replace(
+              "Jakarta, IDN Times",
+              "<b>Jakarta, IDN Times</b>"
+            ); // Membuat "TEMPO.CO, Jakarta" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          }
+          // Cek jika key adalah 'by', tambahkan <b> untuk "Sulistyawan"
+          else if (key === "by") {
+            text = text.replace("Khusniani", "<b>Khusniani</b>"); // Membuat "Sulistyawan" tebal
+            element.innerHTML = text; // Gunakan innerHTML untuk merender tag <b>
+          } else {
+            element.innerText = text; // Untuk selain key yang disebutkan, gunakan innerText
+          }
         });
 
-        // Change the flag and language text in the header
+        // Mengubah flag dan teks bahasa di header
         const flag =
           language === "id"
             ? "https://flagcdn.com/id.svg"
-            : "https://flagcdn.com/gb.svg";
-        const langText = language === "id" ? "ID | IDR" : "EN | IDR";
+            : "https://flagcdn.com/gb.svg"; // Mengubah bendera sesuai dengan bahasa yang dipilih
+
+        const langText = language === "id" ? "ID | IDR" : "EN | IDR"; // Menggunakan "IDR" untuk kedua bahasa
         document.getElementById("lang-flag").src = flag;
-        document.getElementById("lang-text").innerText = langText;
+        document.getElementById("lang-text").innerText = langText; // Mengubah teks bahasa di header
       }
 
-      // Function to Toggle Language Between ID and EN
+      // Fungsi untuk toggle bahasa antara ID dan EN
       function toggleLanguage() {
-        const currentLangText = document.getElementById("lang-text").innerText;
+        const currentLangText = document.getElementById("lang-text").innerText; // Mendapatkan teks saat ini
         let newLang;
 
+        // Cek teks saat ini, apakah "ID | IDR" atau "EN | IDR"
         if (currentLangText === "ID | IDR") {
-          newLang = "en"; // Switch to English
+          newLang = "en"; // Jika "ID | IDR", ganti ke bahasa Inggris (EN)
         } else {
-          newLang = "id"; // Switch to Indonesian
+          newLang = "id"; // Jika "EN | IDR", ganti ke bahasa Indonesia (ID)
         }
 
-        // Change language
+        // Panggil fungsi untuk mengubah bahasa
         changeLanguage(newLang);
       }
 
-      // Set default language to Indonesian
+      // Set default language (misalnya Bahasa Indonesia)
       changeLanguage("id");
     </script>
+
+    <script>
+      // user sudah login
+      const user = JSON.parse(localStorage.getItem("User"));
+      const dropdownBtn = document.getElementById("user-dropdown-btn");
+      const dropdownMenu = document.getElementById("user-dropdown-menu");
+      const dropdownLoginBtn = document.getElementById("dropdown-login-btn");
+      const dropdownRegisterBtn = document.getElementById(
+        "dropdown-register-btn"
+      );
+      const dropdownLogoutBtn = document.getElementById("dropdown-logout-btn");
+      const dropdownText = document.getElementById("user-dropdown-text");
+
+      // Show/hide dropdown
+      dropdownBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle("hidden");
+      });
+
+      // Hide dropdown when clicking outside
+      document.addEventListener("click", function () {
+        dropdownMenu.classList.add("hidden");
+      });
+
+      // User state logic
+      if (user && user.email) {
+        dropdownText.textContent = user.email;
+        dropdownLoginBtn.style.display = "none";
+        dropdownRegisterBtn.style.display = "none";
+        dropdownLogoutBtn.classList.remove("hidden");
+      } else {
+        dropdownText.textContent = "Log In";
+        dropdownLoginBtn.style.display = "";
+        dropdownRegisterBtn.style.display = "";
+        dropdownLogoutBtn.classList.add("hidden");
+      }
+
+      // Logout
+      dropdownLogoutBtn &&
+        dropdownLogoutBtn.addEventListener("click", function () {
+          localStorage.removeItem("User");
+          localStorage.removeItem("pencarianTiket");
+          localStorage.removeItem("selectedBus");
+          localStorage.removeItem("selectedSeat");
+          window.location.reload();
+        });
+    </script>
+
+    <script src="../transaksi/script.js"></script>
   </body>
 </html>

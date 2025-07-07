@@ -29,7 +29,6 @@ function showNotif({ type = "success", title = "", message = "" }) {
   }, 6000); // Menampilkan notifikasi selama 6 detik
 }
 
-// Simulasi waktu habis transaksi (hitung mundur 5 menit)
 let timeLeft = 5 * 60; // 5 menit dalam detik
 const countdownElement = document.getElementById("countdown-timer");
 
@@ -41,7 +40,7 @@ function updateCountdown() {
   }${seconds}`;
 
   if (timeLeft <= 0) {
-    clearInterval(timerInterval); // Menghentikan timer
+    clearInterval(timerInterval); // Menghentikan timer saat waktu habis
     showNotif({
       type: "error",
       title: "Transaksi Kadaluarsa",
@@ -51,27 +50,21 @@ function updateCountdown() {
     // Menampilkan modal dan mengarahkan ke halaman utama setelah 2 detik
     setTimeout(() => {
       console.log("Menampilkan modal...");
-      // Menampilkan modal
       document.getElementById("alertModal").classList.remove("hidden");
-
-      // Menghapus data dari localStorage (menghapus pencarianTiket, selectedSeat, selectedBus)
       localStorage.removeItem("pencarianTiket");
       localStorage.removeItem("selectedSeat");
       localStorage.removeItem("selectedBus");
-
-      // Mengalihkan ke halaman utama setelah 6 detik
       setTimeout(() => {
-        console.log("Redirecting to the homepage...");
-        window.location.replace("../../index.html"); // Menggunakan replace() untuk pengalihan yang lebih kuat
-      }, 6000); // 6 detik untuk pengalihan (setelah modal)
+        window.location.replace("../../index.html"); // Redirect ke halaman utama
+      }, 6000); // Mengalihkan setelah 6 detik
     }, 1000); // Menampilkan modal setelah 1 detik
   }
-  timeLeft--;
+  timeLeft--; // Mengurangi detik
 }
 
-const timerInterval = setInterval(updateCountdown, 1000);
+const timerInterval = setInterval(updateCountdown, 1000); // Memulai interval untuk countdown
 
-// Memanggil fungsi updateCountdown segera untuk menampilkan waktu awal
+// Menampilkan waktu segera setelah halaman dimuat
 updateCountdown();
 
 //
@@ -96,4 +89,52 @@ function copyText() {
 
   // Menghapus textarea setelah teks disalin
   document.body.removeChild(textField);
+}
+
+// Dropdown User/Login/Register/Logout
+const dropdownBtn = document.getElementById("user-dropdown-btn");
+const dropdownMenu = document.getElementById("user-dropdown-menu");
+
+// Menampilkan atau menyembunyikan dropdown
+dropdownBtn.addEventListener("click", function (e) {
+  e.stopPropagation(); // Menghentikan event bubbling agar dropdown tidak menutup saat tombol dropdown diklik
+  dropdownMenu.classList.toggle("hidden");
+});
+
+// Menyembunyikan dropdown saat klik di luar
+document.addEventListener("click", function () {
+  dropdownMenu.classList.add("hidden");
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const email = document
+    .getElementById("user-dropdown-text")
+    .textContent.trim();
+  const dropdownText = document.getElementById("user-dropdown-text");
+  const dropdownLoginBtn = document.getElementById("dropdown-login-btn");
+  const dropdownRegisterBtn = document.getElementById("dropdown-register-btn");
+  const dropdownLogoutBtn = document.getElementById("dropdown-logout-btn");
+
+  if (email !== "Login") {
+    dropdownText.textContent = email; // Mengganti teks menjadi email
+    dropdownLoginBtn.style.display = "none"; // Menyembunyikan tombol Login
+    dropdownRegisterBtn.style.display = "none"; // Menyembunyikan tombol Daftar
+    dropdownLogoutBtn.classList.remove("hidden"); // Menampilkan tombol Logout
+  } else {
+    dropdownText.textContent = "Log In"; // Menampilkan teks "Log In"
+    dropdownLoginBtn.style.display = ""; // Menampilkan tombol Login
+    dropdownRegisterBtn.style.display = ""; // Menampilkan tombol Daftar
+    dropdownLogoutBtn.classList.add("hidden"); // Menyembunyikan tombol Logout
+  }
+});
+
+function logout() {
+  // Hapus data dari session dan localStorage
+  localStorage.removeItem("user_email");
+  localStorage.removeItem("pencarianTiket");
+  localStorage.removeItem("selectedBus");
+  localStorage.removeItem("selectedSeat");
+
+  // Redirect ke halaman utama setelah logout
+  window.location.href = "/index.php"; // Ganti dengan URL halaman login Anda
 }

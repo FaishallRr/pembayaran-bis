@@ -1,4 +1,4 @@
-//berita scroll kanan dan kiri
+// Berita scroll kanan dan kiri
 const beritaScroll = document.getElementById("berita-scroll");
 document.getElementById("scrollLeft").onclick = () => {
   beritaScroll.scrollBy({ left: -350, behavior: "smooth" });
@@ -7,7 +7,7 @@ document.getElementById("scrollRight").onclick = () => {
   beritaScroll.scrollBy({ left: 350, behavior: "smooth" });
 };
 
-//alert atau notifikasi dari ke tujuan sama
+// Alert atau notifikasi jika terminal dari dan ke sama
 function cekTerminalSama() {
   const dari = document.getElementById("terminal-dari").value;
   const keSelect = document.querySelector('select[aria-label="Ke"]');
@@ -15,6 +15,7 @@ function cekTerminalSama() {
     ? keSelect.value
     : document.querySelectorAll("select")[1].value;
   const notif = document.getElementById("notif-terminal");
+
   if (dari && ke && dari === ke) {
     notif.classList.remove("hidden");
     setTimeout(() => {
@@ -26,13 +27,14 @@ function cekTerminalSama() {
   }
 }
 
-//alert atau notifikasi semua belum diisi
+// Alert atau notifikasi jika kolom tidak diisi
 const notifKosong = document.getElementById("notif-kosong");
 document.getElementById("cariTiketBtn").addEventListener("click", function (e) {
   const dari = document.getElementById("terminal-dari").value;
   const ke = document.getElementById("terminal-ke").value;
   const tanggal = document.getElementById("tanggal-berangkat").value;
   const penumpang = document.getElementById("penumpang").value;
+
   if (!dari || !ke || !tanggal || !penumpang) {
     e.preventDefault();
     notifKosong.classList.remove("hidden");
@@ -44,48 +46,20 @@ document.getElementById("cariTiketBtn").addEventListener("click", function (e) {
   }
 });
 
-// user sudah login
-const user = JSON.parse(localStorage.getItem("User"));
+// Dropdown User/Login/Register/Logout
 const dropdownBtn = document.getElementById("user-dropdown-btn");
 const dropdownMenu = document.getElementById("user-dropdown-menu");
-const dropdownLoginBtn = document.getElementById("dropdown-login-btn");
-const dropdownRegisterBtn = document.getElementById("dropdown-register-btn");
-const dropdownLogoutBtn = document.getElementById("dropdown-logout-btn");
-const dropdownText = document.getElementById("user-dropdown-text");
 
-// Show/hide dropdown
+// Menampilkan atau menyembunyikan dropdown
 dropdownBtn.addEventListener("click", function (e) {
   e.stopPropagation();
   dropdownMenu.classList.toggle("hidden");
 });
 
-// Hide dropdown when clicking outside
+// Menyembunyikan dropdown saat klik di luar
 document.addEventListener("click", function () {
   dropdownMenu.classList.add("hidden");
 });
-
-// User state logic
-if (user && user.email) {
-  dropdownText.textContent = user.email;
-  dropdownLoginBtn.style.display = "none";
-  dropdownRegisterBtn.style.display = "none";
-  dropdownLogoutBtn.classList.remove("hidden");
-} else {
-  dropdownText.textContent = "Log In";
-  dropdownLoginBtn.style.display = "";
-  dropdownRegisterBtn.style.display = "";
-  dropdownLogoutBtn.classList.add("hidden");
-}
-
-// Logout
-dropdownLogoutBtn &&
-  dropdownLogoutBtn.addEventListener("click", function () {
-    localStorage.removeItem("User");
-    localStorage.removeItem("pencarianTiket");
-    localStorage.removeItem("selectedBus");
-    localStorage.removeItem("selectedSeat");
-    window.location.reload();
-  });
 
 // Event tombol cari tiket
 document.getElementById("cariTiketBtn").addEventListener("click", function () {
@@ -100,10 +74,10 @@ document.getElementById("cariTiketBtn").addEventListener("click", function () {
   }
 
   // Cek apakah user sudah login
-  const user = JSON.parse(localStorage.getItem("User"));
-  if (!user || !user.email) {
+  const email = localStorage.getItem("user_email"); // Ambil email langsung dari localStorage
+  if (!email) {
     // Jika user belum login, arahkan ke halaman login
-    window.location.href = "./login/login.html";
+    window.location.href = "./login/login.php";
     return;
   }
 
@@ -119,5 +93,54 @@ document.getElementById("cariTiketBtn").addEventListener("click", function () {
   );
 
   // Lanjut ke halaman pemilihan bus
-  window.location.href = "./kursi/kursi.html";
+  window.location.href = "./kursi/kursi.php";
 });
+
+// Fungsi untuk mengecek apakah pengguna sudah login
+function checkLogin() {
+  const email = localStorage.getItem("user_email"); // Ambil email langsung dari localStorage
+
+  if (!email) {
+    // Jika belum login, arahkan ke halaman login
+    window.location.href = "./login/login.php";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const email = localStorage.getItem("user_email"); // Cek apakah ada email di localStorage
+  const dropdownText = document.getElementById("user-dropdown-text");
+  const dropdownMenu = document.getElementById("user-dropdown-menu");
+  const dropdownLoginBtn = document.getElementById("dropdown-login-btn");
+  const dropdownRegisterBtn = document.getElementById("dropdown-register-btn");
+  const dropdownLogoutBtn = document.getElementById("dropdown-logout-btn");
+
+  if (email) {
+    // Jika email ada di localStorage, berarti pengguna sudah login
+    dropdownText.textContent = email; // Ganti teks dengan email pengguna
+
+    // Sembunyikan tombol Login dan Daftar, tampilkan tombol Logout
+    dropdownLoginBtn.classList.add("hidden");
+    dropdownRegisterBtn.classList.add("hidden");
+    dropdownLogoutBtn.classList.remove("hidden");
+  } else {
+    // Jika email tidak ada, berarti pengguna belum login
+    dropdownText.textContent = "Log In"; // Tampilkan "Log In"
+
+    // Sembunyikan tombol Logout, tampilkan tombol Login dan Daftar
+    dropdownLoginBtn.classList.remove("hidden");
+    dropdownRegisterBtn.classList.remove("hidden");
+    dropdownLogoutBtn.classList.add("hidden");
+  }
+});
+
+// Fungsi logout
+function logout() {
+  // Hapus email pengguna dari localStorage
+  localStorage.removeItem("user_email");
+  localStorage.removeItem("pencarianTiket");
+  localStorage.removeItem("selectedBus");
+  localStorage.removeItem("selectedSeat");
+
+  // Redirect ke halaman login setelah logout
+  window.location.href = "/index.php"; // Ganti dengan URL halaman login Anda
+}
